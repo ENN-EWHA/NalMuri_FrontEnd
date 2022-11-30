@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 
     font-family: 'NanumSquareOTF_acR';
-    src:url("./assets/font/NanumSquareOTF_acR.otf");
+    src:url("./assets/fonts/NanumSquareOTF_acR.otf");
     font-weight: 400;
     font-size: 18px;
     }
