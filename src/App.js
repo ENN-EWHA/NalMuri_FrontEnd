@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
     return (
@@ -9,6 +10,7 @@ function App() {
             <GlobalStyle />
             <Routes>
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/login" element={<LoginPage />} />
             </Routes>
         </Router>
     );
