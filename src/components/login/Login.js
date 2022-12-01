@@ -13,10 +13,6 @@ const Login = () => {
                     <Text>비밀번호</Text>
                     <Input type="password" />
                 </Frame>
-                <Frame>
-                    <Text>비밀번호 확인</Text>
-                    <Input type="password" />
-                </Frame>
             </InputBox>
             <LoginButton>
                 <Text>가입하기</Text>
