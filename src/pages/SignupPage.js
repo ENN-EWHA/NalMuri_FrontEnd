@@ -1,7 +1,13 @@
+import Header from "../components/Header";
 import Signup from "../components/signup/Signup";
 
 const SignupPage = () => {
-    return <Signup />;
+    return (
+        <>
+            <Header />
+            <Signup />
+        </>
+    );
 };
 
 export default SignupPage;

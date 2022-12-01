@@ -19,11 +19,11 @@ const Signup = () => {
                 </Frame>
                 <Frame>
                     <Text>비밀번호</Text>
-                    <Input />
+                    <Input type="password" />
                 </Frame>
                 <Frame>
                     <Text>비밀번호 확인</Text>
-                    <Input />
+                    <Input type="password" />
                 </Frame>
             </InputBox>
             <SignupButton>
