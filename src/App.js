@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import MainPage from "./pages/MainPage";
 import MainAfterLoginPage from "./pages/MainAfterLoginPage";
 import ViewDiaryPage from "./pages/ViewDiaryPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 ></Route>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/viewdiary" element={<ViewDiaryPage />} />
+                <Route path="/login" element={<LoginPage />} />
             </Routes>
         </Router>
     );
