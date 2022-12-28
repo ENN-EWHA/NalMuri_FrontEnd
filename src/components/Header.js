@@ -1,16 +1,38 @@
 import styled from "styled-components";
 import logo from "../assets/imgs/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
         <Container>
             <Left>
                 <LogoImg src={logo} />
-                <Logo>날무리</Logo>
+                <Logo>
+                    <Link
+                        to={"/"}
+                        style={{ color: "black", textDecoration: "none" }}
+                    >
+                        날무리
+                    </Link>
+                </Logo>
             </Left>
             <Right>
-                <Text>회원가입</Text>
-                <Text>로그인</Text>
+                <Text>
+                    <Link
+                        to={"/signup"}
+                        style={{ color: "black", textDecoration: "none" }}
+                    >
+                        회원가입
+                    </Link>
+                </Text>
+                <Text>
+                    <Link
+                        to={"/login"}
+                        style={{ color: "black", textDecoration: "none" }}
+                    >
+                        로그인
+                    </Link>
+                </Text>
             </Right>
         </Container>
     );
