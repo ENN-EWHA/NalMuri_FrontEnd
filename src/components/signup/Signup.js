@@ -71,7 +71,6 @@ const Input = styled.input`
     width: 388px;
     background-color: #ffffff;
     border: 1px solid #dee2e6;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 const SignupButton = styled.button`
     border: none;
