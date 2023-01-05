@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Signup from "../components/signup/Signup";
 
@@ -6,6 +7,7 @@ const SignupPage = () => {
         <>
             <Header />
             <Signup />
+            <Footer />
         </>
     );
 };

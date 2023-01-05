@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import plusIcon from "../../assets/imgs/plusIcon.png";
 
 const AddButton = () => {
-    return <Button></Button>;
+    return (
+        <Button>
+            <PlusIcon src={plusIcon}></PlusIcon>
+        </Button>
+    );
 };
 
 const Button = styled.button`
@@ -17,4 +22,10 @@ const Button = styled.button`
     height: 70px;
     width: 70px;
 `;
+
+const PlusIcon = styled.img`
+    height: 50px;
+    widght: 50px;
+`;
+
 export default AddButton;
