@@ -1,7 +1,5 @@
-import EmotionCard from "../../NalMuri_FrontEnd/src/components/Emotion/EmotionCard";
-import Header from "../../NalMuri_FrontEnd/src/components/Header";
-import Footer from "../components/Footer";
-
+import EmotionCard from "../components/Emotion/EmotionCard";
+import Header from "../components/Header";
 const EmotionCardPage = () => {
     return (
         <>

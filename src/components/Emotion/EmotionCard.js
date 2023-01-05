@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from "react";
 import {Tab} from '../Emotion/Tab';
-import Header from '../Header';
+
 
 const EmotionCard=()=>{
     return(

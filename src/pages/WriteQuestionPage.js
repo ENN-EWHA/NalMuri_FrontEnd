@@ -1,7 +1,5 @@
-import Header from "../../NalMuri_FrontEnd/src/components/Header";
-
-import WriteQuestion from "../../NalMuri_FrontEnd/src/components/writeQuestion";
-import Footer from "../components/Footer";
+import Header from "../components/Header";
+import WriteQuestion from "./WriteDiaryPage";
 
 const WriteQuestionPage = () => {
     return (
