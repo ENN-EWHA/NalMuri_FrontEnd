@@ -6,8 +6,35 @@ import MainPage from "./pages/MainPage";
 import MainAfterLoginPage from "./pages/MainAfterLoginPage";
 import ViewDiaryPage from "./pages/ViewDiaryPage";
 import LoginPage from "./pages/LoginPage";
+import EmotionCardPage from "./pages/EmotionCardPage";
+import WriteDiaryPage from "./pages/WriteDiaryPage";
+import WriteQuestionPage from "./pages/WriteQuestionPage";
+import axios from "axios";
 
 function App() {
+    useEffect(() => {
+        axios
+            .get(
+                "https://178d967c-5c77-493f-923e-7513668fcaa6.mock.pstmn.io/board"
+            )
+            .then((Response) => {
+                console.log("연결성공");
+            })
+            .catch((Error) => {
+                console.log(Error);
+            });
+    }, []);
+    useEffect(() => {
+        axios
+            .post("/board", {
+                userid: "12",
+                writeDate: "2023-01-01",
+                diary: "오늘은 어쩌고 저쩌고",
+            })
+            .then((response) => console.log("post성공"))
+            .catch((error) => console.log(error));
+    }, []);
+
     return (
         <Router>
             <GlobalStyle />
@@ -20,6 +47,9 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/viewdiary" element={<ViewDiaryPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/writediary" element={<WriteDiaryPage />} />
+                <Route path="/emotioncard" element={<EmotionCardPage />} />
+                <Route path="/writeQuestion" element={<WriteQuestionPage />} />
             </Routes>
         </Router>
     );
