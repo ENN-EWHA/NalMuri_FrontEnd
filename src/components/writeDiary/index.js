@@ -39,6 +39,7 @@ const Write=()=>{
                 </button> */}
                 
                    </Content>
+              
                 <Editor>
                     <Editorr theme="snow" value={value} onChange={()=>{
                         const data = Editor.getValue();
