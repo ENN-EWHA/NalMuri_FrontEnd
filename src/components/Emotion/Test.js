@@ -48,14 +48,14 @@ const Sad=styled.div`
 height: 400px;
 width:300px;
 background:#E7F3EA;
-border:1px solid black;
+
 border-radius:10px;
 `;
 const Happy=styled.div`
 height: 400px;
 width:300px;
 background: #FFF9D9;
-border:1px solid black;
+
 border-radius:10px;
 `;
 
@@ -63,21 +63,21 @@ const Gloomy=styled.div`
 height: 400px;
 width:300px;
 background: #ECECED;
-border:1px solid black;
+
 border-radius:10px;
 `;
 const Surprised=styled.div`
 height: 400px;
 width:300px;
 background:#FFECDC;
-border:1px solid black;
+
 border-radius:10px;
 `;
 const Fearful=styled.div`
 height: 400px;
 width:300px;
 background: #FDD7DD;
-border:1px solid black;
+
 border-radius:10px;
 `;
 
@@ -85,13 +85,13 @@ const Disgusted=styled.div`
 height: 400px;
 width:300px;
 background:#EDE8F8;
-border:1px solid black;
+
 border-radius:10px;
 `;
 const Angry=styled.div`
 height: 400px;
 width:300px;
 background: #DDEAF9;
-border:1px solid black;
+
 border-radius:10px;
 `;

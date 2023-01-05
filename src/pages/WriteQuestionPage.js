@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import WriteQuestion from "./WriteDiaryPage";
+import WriteQuestion from "../components/writeQuestion";
 import Footer from "../components/Footer";
 
 const WriteQuestionPage = () => {
