@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
+import First from '../main/First';
 import Test from './Test';
 
 
@@ -7,9 +8,9 @@ export function Tab(){
     const [currentTab,setCurrentTab] = useState(0)
 
     const menuArray=[
-        {name:'날짜 순으로 보기', content: <Test />},
+        {name:'날짜 순으로 보기', content: <First/>},
         {name:'감정별 모아보기', content:<Test />},
-        {name:'질문 카드 모아보기',content:'질문카드 모두 모아보기'},
+        //{name:'질문 카드 모아보기',content:'질문카드 모두 모아보기'},
         //{name:'친구 관리',content: '친구관리'}
     ];
     
