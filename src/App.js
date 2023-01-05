@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";

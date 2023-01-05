@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link as LinkR } from "react-router-dom";
-import Calendar from 'react-calendar';
+
 import Header from '../Header';
 
 
