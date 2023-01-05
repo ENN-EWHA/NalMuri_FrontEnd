@@ -86,14 +86,12 @@ const Title = styled.div`
     text-align: left;
     vertical-align: top;
     font-size: 48px;
-    letter-spacing: 0.4000000059604645px;
-    line-height: 62.400001525878906px;
+    padding-bottom: 10px;
 `;
 const Text = styled.div`
     text-align: left;
     vertical-align: top;
     font-size: 16px;
-    letter-spacing: 0.30000001192092896px;
     line-height: 24px;
 `;
 const Button = styled.button`

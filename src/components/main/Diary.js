@@ -1,15 +1,21 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Diary = () => {
     return (
-        <Container>
-            <Color></Color>
-            <Contents>
-                <Date>2022.11.25</Date>
-                <Title>즐거운 하루였다.</Title>
-                <Tag>기쁨</Tag>
-            </Contents>
-        </Container>
+        <Link
+            to={"/viewdiary"}
+            style={{ color: "black", textDecoration: "none" }}
+        >
+            <Container>
+                <Color></Color>
+                <Contents>
+                    <Date>2022.11.25</Date>
+                    <Title>즐거운 하루였다.</Title>
+                    <Tag>기쁨</Tag>
+                </Contents>
+            </Container>
+        </Link>
     );
 };
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
@@ -17,7 +18,14 @@ const Login = () => {
             <LoginButton>
                 <Text>가입하기</Text>
             </LoginButton>
-            <Text>아직 회원이 아니신가요?</Text>
+            <Text>
+                <Link
+                    to={"/signup"}
+                    style={{ color: "black", textDecoration: "none" }}
+                >
+                    아직 회원이 아니신가요?
+                </Link>
+            </Text>
             <Text>(아이디/비밀번호 찾기)</Text>
         </Container>
     );
