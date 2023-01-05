@@ -1,12 +1,14 @@
 import Header from "../components/Header";
 import ViewDiary from "../components/viewDiary/ViewDiary";
 import styled from "styled-components";
+import Footer from "../components/Footer";
 
 const ViewDiaryPage = () => {
     return (
         <Container>
             <Header />
             <ViewDiary />
+            <Footer />
         </Container>
     );
 };

@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import MainAfterLogin from "../components/main/MainAfterLogin";
 import styled from "styled-components";
 import AddButton from "../components/main/AddButton";
+import Footer from "../components/Footer";
 
 const MainAfterLoginPage = () => {
     return (
@@ -9,6 +10,7 @@ const MainAfterLoginPage = () => {
             <Header></Header>
             <MainAfterLogin></MainAfterLogin>
             <AddButton></AddButton>
+            <Footer />
         </Container>
     );
 };
