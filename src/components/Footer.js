@@ -7,18 +7,13 @@ const Footer = () => {
     return (
         <Container>
             <Right>
-                <LogoImg src={githubIcon}>
-                    <Link
-                        to={"/signup"}
-                        style={{ color: "black", textDecoration: "none" }}
-                    ></Link>
-                </LogoImg>
-                <LogoImg src={notionIcon}>
-                    <Link
-                        to={"/login"}
-                        style={{ color: "black", textDecoration: "none" }}
-                    ></Link>
-                </LogoImg>
+                <a href="https://github.com/orgs/ENN-EWHA/repositories">
+                    <LogoImg src={githubIcon} />
+                </a>
+
+                <a href="https://simple-cartoon-617.notion.site/b1f1cd83629a4c89bfa2c16267c8421c">
+                    <LogoImg src={notionIcon} />
+                </a>
             </Right>
         </Container>
     );
@@ -33,6 +28,7 @@ const Container = styled.div`
     justify-content: flex-end;
     align-items: center;
     margin: 23px auto;
+    padding: 50px 0;
 `;
 
 const LogoImg = styled.img`
