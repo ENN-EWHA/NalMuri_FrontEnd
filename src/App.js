@@ -13,27 +13,21 @@ import axios from "axios";
 function App() {
     useEffect(() => {
         axios
-            .get(
-                "https://178d967c-5c77-493f-923e-7513668fcaa6.mock.pstmn.io/board"
-            )
-            .then((Response) => {
-                console.log("연결성공");
-            })
-            .catch((Error) => {
-                console.log(Error);
-            });
-    }, []);
-    useEffect(() => {
-        axios
-            .post("/board", {
-                userid: "12",
-                writeDate: "2023-01-01",
-                diary: "오늘은 어쩌고 저쩌고",
-            })
-            .then((response) => console.log("post성공"))
+            .get("/auth")
+            .then((response) => console.log(response.data))
             .catch((error) => console.log(error));
     }, []);
 
+    // useEffect(() => {
+    //     axios
+    //         .post("/board", {
+    //             userid: "12",
+    //             writeDate: "2023-01-01",
+    //             diary: "오늘은 어쩌고 저쩌고",
+    //         })
+    //         .then((response) => console.log("post성공"))
+    //         .catch((error) => console.log(error));
+    // }, []);
 
     return (
         <Router>
