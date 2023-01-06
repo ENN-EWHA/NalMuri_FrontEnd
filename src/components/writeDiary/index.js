@@ -1,78 +1,180 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+// import styled from "styled-components";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
+// import { Link as LinkR } from "react-router-dom";
+
+// import Header from "../Header";
+
+// const getStringDate = (date) => {
+//     return date.toISOString().slice(0, 10);
+//   };
+
+// const Write = () => {
+//     const [value, setValue] = useState('');
+//     const [date, setDate] = useState(getStringDate(new window.Date()));
+//     const [diary, setDiary] = useState({
+//         date: "",
+//         title: "",
+//         content: "",
+//     });
+
+// console.log(date)
+// console.log(diary)
+//     const getDate=(e)=>{
+//         const{name, value}=e.target;
+//         setDate({
+//             ...date,
+//             [name]:value,
+//         });
+//         console.log(date);
+//     }
+//     const getValue = (e) => {
+//         const { name, value } = e.target;
+//         setDiary({
+//             ...diary,
+//             [name]: value,
+//         });
+//         console.log(diary);
+//     };
+ 
+// console.log(diary)
+//     return (
+//         <Container>
+            
+//             <Content>
+//             <Date>
+//                 <Dater type="text" value={date} onChange={getDate}/>
+//             </Date>
+                
+//                 <InputText
+//                     type="text"
+//                     placeholder="제목"
+//                     onChange={getValue}
+//                     name="title"
+//                 />
+//                 {/* <button name= "calendar">
+//                     <div className="calendar">
+//                         <Calendar value={date} onChange={setDate}/>
+
+//                     </div>
+//                 </button> */}
+                
+//                    </Content>
+              
+//                 <Editor>
+//                     <Editorr theme="snow" value={value} onChange={()=>{
+//                         const data = Editor.getValue();
+//                         console.log({ Editor, data });
+//                         setDiary({
+//                             ...diary,
+//                             content: data,
+//                         });
+//                         console.log(diary);
+//                     }}
+//                     name="content"
+//                 />
+//             </Editor>
+
+//             <Menu>
+//                 <TempSave>
+//                     <BtnLink to="./WriteQuestion">
+//                         <BtnName type="submit">저장 후 질문카드 생성</BtnName>
+//                     </BtnLink>
+//                 </TempSave>
+//             </Menu>
+//         </Container>
+//     );
+// };
+
+// export default Write;
+ 
+
+
+
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link as LinkR } from "react-router-dom";
 
-import Header from "../Header";
+const Write=()=>{
 
-const Write = () => {
-    const [value, setValue] = useState({ writeDiary: "" });
+
+    const getStringDate = (date) => {
+        return date.toISOString().slice(0, 10);
+      };
+
     const [date, setDate] = useState("");
-    const [diary, setDiary] = useState({
-        date: "new Date(date).getTime()",
-        title: "",
-        content: "",
-    });
-    const getValue = (e) => {
-        const { name, value } = e.target;
-        setDiary({
-            ...diary,
-            [name]: value,
-        });
-        console.log(diary);
-    };
+    const[title, setTitle] = useState("");
+    const[content,setContent]=useState("");
 
-    return (
+    
+        
+    const[state,setState]=useState({
+        date:"",
+        title:"",
+        content:"",
+    });
+    const handleChangeState=(e)=>{
+        setState({
+            ...state,
+            [e.target.name]:e.target.value
+        });
+    };
+    const handleSubmit=()=>{
+        console.log(state);
+        alert("저장");
+    };
+    const titleInput=useRef();
+    const contentInput=useRef();
+    
+    return(
         <Container>
             <Content>
-                <InputText
-                    type="text"
-                    placeholder="제목"
-                    onChange={getValue}
-                    name="title"
-                />
-                {/* <button name= "calendar">
-                    <div className="calendar">
-                        <Calendar value={date} onChange={setDate}/>
-
-                    </div>
-                </button> */}
-                
-                   </Content>
+     
+                    <Datediv>
+                        <Date
+                        value={state.date}
+                        onChange={handleChangeState}
+                        name="date"
+                        type="date"/>
+                    </Datediv>
+          
+            
               
-                <Editor>
-                    <Editorr theme="snow" value={value} onChange={()=>{
-                        const data = Editor.getValue();
-                        console.log({ Editor, data });
-                        setDiary({
-                            ...diary,
-                            content: data,
-                        });
-                        console.log(diary);
-                    }}
-                    name="content"
-                />
-            </Editor>
+                    <InputText
+                    ref={titleInput}
+                    value={state.title}
+                    onChange={handleChangeState}
+                    name="title"
+                    placeholder="제목"
+                    type="text"/>
+        
+                    <Editor
+                        ref={contentInput}
+                        value={state.content}
+                        onChange={handleChangeState}
+                        name="content"
+                        placeholder="내용입력"
+                        type="text"/>
+                    
 
-            <Menu>
-                <TempSave type="submit" value="임시저장">
-                    <BtnLink to="./WriteQuestion">
-                        <BtnName>임시저장</BtnName>
+                    <Menu>
+                    <BtnLink to="./WriteQuestion">                   
+                        <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                     </BtnLink>
-                </TempSave>
-
-                <TempSave>
-                    <BtnLink to="./WriteQuestion">
-                        <BtnName>저장 후 질문카드 생성</BtnName>
-                    </BtnLink>
-                </TempSave>
-            </Menu>
+                    </Menu>
+                    
+            
+            </Content>
         </Container>
-    );
-};
+    )
 
+  
+}
 export default Write;
+
 
 const Container = styled.div`
     height: 2000px;
@@ -81,14 +183,30 @@ const Container = styled.div`
 `;
 const Content = styled.div`
     width: 70%;
+    
     margin: auto;
 `;
-const Editor = styled.div`
+const Editor = styled.input`
     height: 600px;
     overflow: scroll;
     border: 1px solid;
-    width: 70%;
+    width:100%;
     margin: auto;
+    align-item:center;
+  
+`;
+const Date=styled.input`
+border:1px solid;
+border-radius:5px;
+    
+`;
+const Datediv=styled.div`
+padding-top:50px;
+display:flex;
+`;
+const Dater=styled.input`
+
+border: 1px solid white;
 `;
 const InputText = styled.input`
     position: relative;
@@ -98,16 +216,9 @@ const InputText = styled.input`
     margin-bottom: 20px;
     margin-top: 20px;
     border: transparent;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #a7d8ff;
 `;
-const Editorr = styled(ReactQuill)`
-    height: 100%;
-`;
-const TempSave = styled.button`
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-`;
+
 const BtnLink = styled(LinkR)`
     background: lightgray;
     white-space: nowrap;
@@ -134,5 +245,6 @@ const Menu = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    padding-top:20px;
 `;
 const Link = styled(LinkR)``;
