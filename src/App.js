@@ -1,4 +1,4 @@
-import React ,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";
@@ -6,7 +6,6 @@ import MainPage from "./pages/MainPage";
 import MainAfterLoginPage from "./pages/MainAfterLoginPage";
 import ViewDiaryPage from "./pages/ViewDiaryPage";
 import LoginPage from "./pages/LoginPage";
-import EmotionCardPage from "./pages/EmotionCardPage";
 import WriteDiaryPage from "./pages/WriteDiaryPage";
 import WriteQuestionPage from "./pages/WriteQuestionPage";
 import axios from "axios";
@@ -48,7 +47,6 @@ function App() {
                 <Route path="/viewdiary" element={<ViewDiaryPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/writediary" element={<WriteDiaryPage />} />
-                <Route path="/emotioncard" element={<EmotionCardPage />} />
                 <Route path="/writeQuestion" element={<WriteQuestionPage />} />
             </Routes>
         </Router>

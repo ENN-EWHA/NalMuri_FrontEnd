@@ -1,11 +1,17 @@
 import styled from "styled-components";
-import plusIcon from "../../assets/imgs/plusIcon.png";
+import plusIcon from "../../../assets/imgs/plusIcon.png";
+import { Link } from "react-router-dom";
 
 const AddButton = () => {
     return (
-        <Button>
-            <PlusIcon src={plusIcon}></PlusIcon>
-        </Button>
+        <Link
+            to={"/writediary"}
+            style={{ color: "black", textDecoration: "none" }}
+        >
+            <Button>
+                <PlusIcon src={plusIcon}></PlusIcon>
+            </Button>
+        </Link>
     );
 };
 
@@ -21,6 +27,8 @@ const Button = styled.button`
 
     height: 70px;
     width: 70px;
+
+    cursor: pointer;
 `;
 
 const PlusIcon = styled.img`

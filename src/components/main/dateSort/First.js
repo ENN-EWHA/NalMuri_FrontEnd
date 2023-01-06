@@ -23,7 +23,6 @@ const Text = styled.div`
     text-align: center;
     vertical-align: top;
     font-size: 30px;
-    font-family: NanumSquareOTF_ac;
     line-height: auto;
     color: #b1b0ae;
 `;
