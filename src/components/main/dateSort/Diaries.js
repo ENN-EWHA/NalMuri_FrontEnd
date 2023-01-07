@@ -9,21 +9,20 @@ const Diaries = () => {
     const [data, setData] = useState([]);
 
     const uid = useSelector((state) => state.auth.userData.userid);
-    const [userid, setUserid] = useState(uid);
+    const [userid, setUserid] = useState("");
 
     //axios
     useEffect(() => {
+        console.log(uid);
         setUserid(uid);
-    }, [uid]);
 
-    if (userid != undefined) {
         axios
             .get(`/board/${userid}`)
             .then((res) => {
                 setData(res.data);
             })
             .catch((error) => console.log(error));
-    }
+    }, [uid, userid]);
 
     const renderDiary = (data) => {
         const result = [];

@@ -1,8 +1,57 @@
 import styled from "styled-components";
 import logo from "../assets/imgs/logo.png";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { clearUser } from "../reducer/authSlice";
 
 const Header = () => {
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.auth.isLogin);
+    const renderRight = () => {
+        const result = [];
+
+        if (isLogin != true) {
+            result.push(
+                <Right>
+                    <Text>
+                        <Link
+                            to={"/signup"}
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
+                            회원가입
+                        </Link>
+                    </Text>
+                    <Text>
+                        <Link
+                            to={"/login"}
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
+                            로그인
+                        </Link>
+                    </Text>
+                </Right>
+            );
+        } else {
+            result.push(
+                <Right>
+                    <Text
+                        onClick={() => {
+                            dispatch(clearUser());
+                        }}
+                    >
+                        <Link
+                            to={"/"}
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
+                            로그아웃
+                        </Link>
+                    </Text>
+                </Right>
+            );
+        }
+
+        return result;
+    };
     return (
         <Container>
             <Left>
@@ -16,24 +65,7 @@ const Header = () => {
                     </Link>
                 </Logo>
             </Left>
-            <Right>
-                <Text>
-                    <Link
-                        to={"/signup"}
-                        style={{ color: "black", textDecoration: "none" }}
-                    >
-                        회원가입
-                    </Link>
-                </Text>
-                <Text>
-                    <Link
-                        to={"/login"}
-                        style={{ color: "black", textDecoration: "none" }}
-                    >
-                        로그인
-                    </Link>
-                </Text>
-            </Right>
+            {renderRight()}
         </Container>
     );
 };
