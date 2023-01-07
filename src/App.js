@@ -1,4 +1,4 @@
-import React ,{useEffect} from "react";
+import React ,{useEffect,useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";
@@ -34,7 +34,6 @@ function App() {
             .then((response) => console.log("post성공"))
             .catch((error) => console.log(error));
     }, []);
-
 
     return (
         <Router>

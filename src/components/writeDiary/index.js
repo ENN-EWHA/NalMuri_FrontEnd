@@ -97,6 +97,7 @@ import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link as LinkR } from "react-router-dom";
+import axios from "axios";
 
 const Write=()=>{
 
@@ -122,12 +123,21 @@ const Write=()=>{
             [e.target.name]:e.target.value
         });
     };
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+        axios.post("/board",state)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
         console.log(state);
         alert("저장");
     };
+  
     const titleInput=useRef();
     const contentInput=useRef();
+ 
     
     return(
         <Container>
@@ -161,7 +171,7 @@ const Write=()=>{
                     
 
                     <Menu>
-                    <BtnLink to="./WriteQuestion">                   
+                    <BtnLink to="/WriteQuestion">                   
                         <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                     </BtnLink>
                     </Menu>

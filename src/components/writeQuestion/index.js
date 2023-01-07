@@ -4,54 +4,86 @@ import axios from 'axios';
 import { Link as LinkR } from "react-router-dom";
 import Header from '../Header.js';
 const WriteQuestion=()=>{
-    const [answer,setAnswer]=useState({
-        date:'new Date(date).getTime()',
-        answer:''
+    // const [answer,setAnswer]=useState({
+    //     date:'new Date(date).getTime()',
+    //     answer:''
 
-    })
-    const getValue=e=>{
-        const {name, value}=e.target;
-        setAnswer({
-            ...answer,
-            [name]:value
-        })
-        console.log(answer);
-    }
+    // })
+    // const getValue=e=>{
+    //     const {name, value}=e.target;
+    //     setAnswer({
+    //         ...answer,
+    //         [name]:value
+    //     })
+    //     console.log(answer);
+    // }
 
-    useEffect(() => {
-        axios
-        .get("/board/card",{// 질문카드 어케 받아와요
-            userid:'',
-            answer:''
-        })
-            .then((response) => console.log(response.data))
-            .catch((error) => console.log(error));
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //     .get("/board/card",{// 질문카드 어케 받아와요
+    //         userid:'',
+    //         answer:''
+    //     })
+    //         .then((response) => console.log(response.data))
+    //         .catch((error) => console.log(error));
+    // }, []);
+
+
+    const getStringDate=(date)=>{
+        return date.toISOString().slice(0,10);
+    };
+
+    const[date, setDate]=useState("");
+    const[cardAnswer,setCardAnswer]=useState("");
+
+    const[state,setState]=useState({
+        date:"",
+        cardAnswer:"",
+
+    });
+
+       const handleChangeState=(e)=>{
+        setState({
+            ...state,
+            [e.target.name]:e.target.value
+        });
+    };
+    const handleSubmit=()=>{
+        console.log(state);
+        alert("저장");
+    };
 
     return(
         <Container>
+            <Datediv>
+                    <Date
+                        value={state.date}
+                        onChange={handleChangeState}
+                        name="date"
+                        type="date"/>
+                    </Datediv>
          
            <Answeringcontainer>
-                <QuestionCont placeholder="당신이 기억하는 첫번째 크리스마스는 어떤 추억인가요?"> 
+                <QuestionCont>
+                    질문 여기다가 불러오면? 
 
 
                 </QuestionCont>
-                <AnswerCont placeholder="질문에 답변을 남겨보세요" type="text" name="answer" onChange={getValue}>
+                <AnswerCont
+                 value={state.cardAnswer}
+                        onChange={handleChangeState}
+                        name="cardAnswer"
+                        type="text"
+                        placeholder="떠오르는 대답을 입력하세요"/>
 
-                </AnswerCont>
             </Answeringcontainer>
             <ButtonDiv>
                 <Button1>
-                <BtnLink to="/">
-                        <BtnName>저장하기</BtnName>
-                </BtnLink>
-                </Button1>
-                
-                <Button1>
                 <BtnLink to="/EmotionCard">
-                        <BtnName>공유하기</BtnName>
+                        <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                 </BtnLink>
                 </Button1>
+            
             </ButtonDiv>
  
 
@@ -74,14 +106,24 @@ justify-content:space-between;
 
 
 `;
-const QuestionCont=styled.input`
+const Date=styled.input`
+border:1px solid;
+border-radius:5px;
+    
+`;
+const Datediv=styled.div`
+padding-top:50px;
+display:flex;
+`;
+const QuestionCont=styled.div`
 height:70%;
 width:500px;
-align-item:wrap;
+align-item:center;
 padding: 0 20px 0px 20px;
 border: 1px solid black;
 background-color:#DDEAF9;
 `;
+
 const AnswerCont=styled.input`
 height: 70%;
 width:500px;
