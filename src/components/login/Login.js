@@ -56,6 +56,13 @@ const Login = () => {
         setLoading(true);
     };
 
+    //enter
+    const enterkey = (e) => {
+        if (e.key == "Enter") {
+            onClickLogin(e);
+        }
+    };
+
     return (
         <Container>
             <Title>로그인</Title>
@@ -66,7 +73,12 @@ const Login = () => {
                 </Frame>
                 <Frame>
                     <Text>비밀번호</Text>
-                    <Input type="password" value={pw} onChange={handlePw} />
+                    <Input
+                        type="password"
+                        value={pw}
+                        onChange={handlePw}
+                        onKeyPress={enterkey}
+                    />
                 </Frame>
             </InputBox>
             <LoginButton
