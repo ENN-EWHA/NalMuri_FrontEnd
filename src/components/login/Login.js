@@ -2,13 +2,10 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../reducer/authSlice";
+import { useDispatch } from "react-redux";
+import { loginUser, userInfo } from "../../reducer/authSlice";
 
 const Login = () => {
-    let auth = useSelector((state) => {
-        return state.auth;
-    });
     const dispatch = useDispatch();
 
     const [id, setId] = useState("");
@@ -45,8 +42,24 @@ const Login = () => {
         axios
             .post("/auth/login", body)
             .then((res) => {
-                console.log(res);
                 dispatch(loginUser(res.data.accessToken));
+                if (res.data.accessToken) {
+                    localStorage.setItem("loginToken", res.data.accessToken);
+
+                    //token 정보를 사용하여 user 정보를 불러온 뒤 저장
+                    axios.defaults.headers.common[
+                        "Authorization"
+                    ] = `Bearer ${res.data.accessToken}`;
+                    axios
+                        .get("/member/my/info")
+                        .then((res) => {
+                            dispatch(userInfo(res.data));
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                }
+
                 navigate("/mainAfterLogin");
             })
             .catch((error) => {

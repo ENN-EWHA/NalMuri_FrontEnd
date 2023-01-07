@@ -19,7 +19,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 3px;
+    gap: 15px;
     margin: 20px 0;
     padding: 20px;
 `;

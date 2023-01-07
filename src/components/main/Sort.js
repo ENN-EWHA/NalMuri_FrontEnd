@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Emotion from "./emotionSort/Emotion";
-import First from "./dateSort/First";
 import AddButton from "./dateSort/AddButton";
-import Diary from "./dateSort/Diary";
+import Diaries from "./dateSort/Diaries";
 
 const Sort = () => {
     const [currentTab, setCurrentTab] = useState(0);
@@ -12,8 +11,7 @@ const Sort = () => {
             name: "날짜 순으로 보기",
             content: (
                 <>
-                    <First />
-                    <Diary />
+                    <Diaries />
                     <AddButton />
                 </>
             ),
