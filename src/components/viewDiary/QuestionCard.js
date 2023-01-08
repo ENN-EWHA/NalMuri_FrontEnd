@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const QuestionCard = (card) => {
+const QuestionCard = ({ card }) => {
     return (
         <Card>
-            <Question>{card.card}</Question>
+            <Question>{card}</Question>
         </Card>
     );
 };

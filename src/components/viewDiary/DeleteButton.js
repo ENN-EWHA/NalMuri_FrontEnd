@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const DeleteButton = (data) => {
+const DeleteButton = ({ data }) => {
     const token = useSelector((state) => state.auth.userToken);
     const onClickDelete = () => {
         axios
@@ -12,11 +12,11 @@ const DeleteButton = (data) => {
                     Authorization: `Bearer ${token}`,
                 },
                 data: {
-                    userid: data.data.data.userid,
-                    writeDate: data.data.data.writeDate,
+                    userid: data.userid,
+                    writeDate: data.writeDate,
                 },
             })
-            .then((res) => {
+            .then(() => {
                 console.log("삭제 성공");
             })
             .catch((err) => {

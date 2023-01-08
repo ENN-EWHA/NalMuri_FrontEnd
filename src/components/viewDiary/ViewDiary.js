@@ -3,53 +3,19 @@ import DeleteButton from "./DeleteButton";
 import Diary from "./Diary";
 import QuestionAnswer from "./QuestionAnswer";
 import QuestionCard from "./QuestionCard";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
-const ViewDiary = (data) => {
-    const uid = useSelector((state) => state.auth.userData.userid);
-    const [userid, setUserid] = useState("");
-    const [carddata, setCarddata] = useState("");
-    let cardInfo = "";
-
-    //question card 정보
-    useEffect(() => {
-        setUserid(uid);
-
-        axios
-            .get(`/board/question/${userid}`)
-            .then((res) => {
-                setCarddata(res.data);
-            })
-            .catch((error) => console.log(error));
-    }, [uid, userid]);
-
-    //현재 card 정보
-    if (data.data.cardid != -1) {
-        try {
-            carddata.map((it) => {
-                if (it.cardid == data.data.cardid) {
-                    cardInfo = it;
-                    return;
-                }
-            });
-        } catch (err) {
-            cardInfo = carddata;
-        }
-    }
-
+const ViewDiary = ({ data, currentCard }) => {
     return (
         <Container>
-            <Date>{data.data.writeDate}</Date>
+            <Date>{data.writeDate}</Date>
             <Title>오늘의 일기</Title>
             <Contents>
                 <Left>
-                    <Diary diary={data.data.diary} />
+                    <Diary diary={data.diary} />
                 </Left>
                 <Right>
-                    <QuestionCard card={cardInfo.cardquestion} />
-                    <QuestionAnswer answer={cardInfo.cardAnswer} />
+                    <QuestionCard card={currentCard.cardquestion} />
+                    <QuestionAnswer answer={currentCard.cardAnswer} />
                 </Right>
             </Contents>
             <Buttons>
