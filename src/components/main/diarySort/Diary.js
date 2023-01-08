@@ -5,15 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 const Diary = ({ data }) => {
-    const colorList = [
-        "#ACD6B9",
-        "#FDBF88",
-        "#F7778C",
-        "#8DB6E9",
-        "#BDBFC0",
-        "#FFE880",
-        "#BBACE0",
-    ];
+    const colorList = useSelector((state) => state.color.colorList);
     const [carddata, setCarddata] = useState("");
     const [userId, setUserId] = useState("");
     const uid = useSelector((state) => state.auth.userData.userid);
@@ -55,7 +47,7 @@ const Diary = ({ data }) => {
                 <Color
                     color={
                         currentCard.emotion + 1
-                            ? colorList[currentCard.emotion]
+                            ? colorList[currentCard.emotion].color
                             : "#EBEBEB"
                     }
                 ></Color>
