@@ -11,19 +11,23 @@ import WriteQuestionPage from "./pages/WriteQuestionPage";
 import axios from 'axios';
 import { useSelector } from "react-redux";
 function App() {
-    useEffect(() => {
-        axios
-            .get("/board/cu"
-                
-            )
-            .then((response) => {
-                console.log(response.data);
-                
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios({
+    //         method: 'GET',
+    //         url: "./board/question/nlp",
+    //         body: {
+    //           "sentence":"집에가고싶다요"
+    //         }
+          
+    //       }, { withCredentials : true })
+    //         .then((Response)=>{
+    //           console.log(Response.data);
+    //       }).catch((Error)=>{
+    //           console.log(Error);
+    //       })
+    // })
+        // axios
+
 
     // useEffect(() => {
     //     axios
@@ -41,14 +45,19 @@ function App() {
 
     // useEffect(() => {
     //     axios
-    //         .post("/board", {
-    //             userid: "12",
-    //             writeDate: "2023-01-01",
-    //             diary: "오늘은 어쩌고 저쩌고",
-    //         })
-    //         .then((response) => console.log("post성공"))
+    //         .get("/board/question/nlp", {
+    //             "sentence":"안녕하세요"
+    //             }
+     
+    //         )
+    //         .then((response) => console.log(response.data))
     //         .catch((error) => console.log(error));
     // }, []);
+    // useEffect(() => {
+    //         fetch("http://34.64.209.5:8080/board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
+    //           .then((response) => console.log("response:", response))
+    //           .catch((error) => console.log("error:", error));
+    // })
 
 
     const isLogin = useSelector((state) => state.auth.isLogin);
