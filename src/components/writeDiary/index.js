@@ -92,42 +92,73 @@
 
 
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect} from "react";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link as LinkR } from "react-router-dom";
+import axios from "axios";
 
-const Write=()=>{
+const Write=(data)=>{
 
 
     const getStringDate = (date) => {
         return date.toISOString().slice(0, 10);
       };
 
-    const [date, setDate] = useState("");
-    const[title, setTitle] = useState("");
-    const[content,setContent]=useState("");
+    const[writeDate, setDate] = useState("");
+    const[userid, setTitle] = useState("");
+    const[diary,setContent]=useState("");
 
     
         
     const[state,setState]=useState({
-        date:"",
-        title:"",
-        content:"",
+        // userid:data.props.id,
+        writeDate:"",
+        userid:"",
+        diary:"",
     });
+
     const handleChangeState=(e)=>{
         setState({
             ...state,
             [e.target.name]:e.target.value
         });
     };
-    const handleSubmit=()=>{
+ 
+    useEffect(() => {
+        axios
+            .get("./board/hi"
+                
+            )
+            .then((response) => {
+                console.log(response.data);
+                
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
+    const handleSubmit=(e)=>{
+    
         console.log(state);
         alert("저장");
+        
+        axios
+        .post("./board",state)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     };
+  
     const titleInput=useRef();
     const contentInput=useRef();
+ 
+ 
     
     return(
         <Container>
@@ -135,9 +166,9 @@ const Write=()=>{
      
                     <Datediv>
                         <Date
-                        value={state.date}
+                        value={state.writeDate}
                         onChange={handleChangeState}
-                        name="date"
+                        name="writeDate"
                         type="date"/>
                     </Datediv>
           
@@ -145,23 +176,23 @@ const Write=()=>{
               
                     <InputText
                     ref={titleInput}
-                    value={state.title}
+                    value={state.userid}
                     onChange={handleChangeState}
-                    name="title"
+                    name="userid"
                     placeholder="제목"
                     type="text"/>
         
                     <Editor
                         ref={contentInput}
-                        value={state.content}
+                        value={state.diary}
                         onChange={handleChangeState}
-                        name="content"
+                        name="diary"
                         placeholder="내용입력"
                         type="text"/>
                     
 
                     <Menu>
-                    <BtnLink to="./WriteQuestion">                   
+                    <BtnLink to="/WriteQuestion">                   
                         <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                     </BtnLink>
                     </Menu>

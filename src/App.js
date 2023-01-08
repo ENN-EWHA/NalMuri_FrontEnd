@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect,useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";
@@ -8,12 +8,53 @@ import ViewDiaryPage from "./pages/ViewDiaryPage";
 import LoginPage from "./pages/LoginPage";
 import WriteDiaryPage from "./pages/WriteDiaryPage";
 import WriteQuestionPage from "./pages/WriteQuestionPage";
+import axios from 'axios';
 import { useSelector } from "react-redux";
-
 function App() {
+    useEffect(() => {
+        axios
+            .get("/board/token-test"
+                
+            )
+            .then((response) => {
+                console.log(response.data);
+                
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
+    // useEffect(() => {
+    //     axios
+    //         .post("/board",{userid:"1", writeDate:"2022-01-05", diary:"1"}
+                
+    //         )
+    //         .then((response) => {
+    //             console.log("보내짐");
+                
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }, []);
+
+    // useEffect(() => {
+    //     axios
+    //         .post("/board", {
+    //             userid: "12",
+    //             writeDate: "2023-01-01",
+    //             diary: "오늘은 어쩌고 저쩌고",
+    //         })
+    //         .then((response) => console.log("post성공"))
+    //         .catch((error) => console.log(error));
+    // }, []);
+
+
     const isLogin = useSelector((state) => state.auth.isLogin);
 
     return (
+        
         <Router>
             <GlobalStyle />
             <Routes>
