@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const Diary = (data) => {
     return (
         <Link
-            to={"/viewdiary"}
+            to="viewDiary"
+            state={{ data: data.props }}
             style={{ color: "black", textDecoration: "none" }}
         >
             <Container>
