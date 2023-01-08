@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import mainpageImg from "../../assets/imgs/mainpageImg.png";
+import cardpageImg from "../../assets/imgs/cardpageImg.png";
+import cardImg from "../../assets/imgs/cardImg.png";
 
 const Main = () => {
     return (
@@ -14,11 +17,13 @@ const Main = () => {
                     <Text>당신의 감정을 알아보는 날무리를 경험해 보세요.</Text>
                 </Left>
                 <Right>
-                    <Img></Img>
+                    <Img src={mainpageImg}></Img>
                 </Right>
             </Canvas1>
             <Canvas2>
-                <Left></Left>
+                <Left>
+                    <CardImg src={cardImg} width="286px"></CardImg>
+                </Left>
                 <Right>
                     <Title>하루를 마무리 하는</Title>
                     <Title>나만의 질문 카드</Title>
@@ -37,13 +42,13 @@ const Main = () => {
             </Canvas2>
             <Canvas3>
                 <Left>
-                    <Title>무드 트래커부터</Title>
-                    <Title>워드 클라우드까지</Title>
+                    <Title>일기장으로</Title>
+                    <Title>무드 트래커까지</Title>
                     <Text>무드 트래커를 찾고 있나요?</Text>
-                    <Text>워드 클라우드와 함께 체크해보세요!</Text>
+                    <Text>날무리와 함께 체크해보세요!</Text>
                 </Left>
                 <Right>
-                    <Img></Img>
+                    <Img src={cardpageImg}></Img>
                 </Right>
             </Canvas3>
         </Container>
@@ -81,6 +86,11 @@ const Img = styled.img`
     width: 526.5px;
     border-radius: 10px;
     height: 333px;
+    filter: drop-shadow(7px 10px 10px rgba(0, 0, 0, 0.25));
+`;
+const CardImg = styled(Img)`
+    width: 286px;
+    height: 456px;
 `;
 const Title = styled.div`
     text-align: left;
