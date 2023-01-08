@@ -3,6 +3,7 @@ import Slide from "./Slide";
 import Sort from "./Sort";
 
 const MainAfterLogin = () => {
+
     return (
         <Container>
             <Slide />

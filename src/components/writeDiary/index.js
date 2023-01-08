@@ -93,29 +93,34 @@
 
 
 import React, { useState, useRef,useEffect} from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link as LinkR } from "react-router-dom";
 import axios from "axios";
 
-const Write=(data)=>{
+const Write=()=>{
 
 
     const getStringDate = (date) => {
         return date.toISOString().slice(0, 10);
       };
 
+    const userid = useSelector((id) => id.auth.userData.userid);
+
+    // const[userid,setUserid]=useState("");
     const[writeDate, setDate] = useState("");
-    const[userid, setTitle] = useState("");
+    const[title, setTitle] = useState("");
     const[diary,setContent]=useState("");
 
     
         
     const[state,setState]=useState({
+        
         // userid:data.props.id,
         writeDate:"",
-        userid:"",
+        userid,
         diary:"",
     });
 
@@ -128,7 +133,7 @@ const Write=(data)=>{
  
     useEffect(() => {
         axios
-            .get("./board/hi"
+            .get("./board/cu"
                 
             )
             .then((response) => {
@@ -141,10 +146,9 @@ const Write=(data)=>{
     }, []);
 
     const handleSubmit=(e)=>{
-    
-        console.log(state);
-        alert("저장");
-        
+ 
+      
+        // setUserid(uid);
         axios
         .post("./board",state)
         .then((res)=>{
@@ -153,6 +157,11 @@ const Write=(data)=>{
         .catch((error)=>{
             console.log(error);
         })
+
+        
+        console.log(state);
+        alert("저장");
+        
     };
   
     const titleInput=useRef();
@@ -174,14 +183,14 @@ const Write=(data)=>{
           
             
               
-                    <InputText
+                    {/* <InputText
                     ref={titleInput}
                     value={state.userid}
                     onChange={handleChangeState}
                     name="userid"
                     placeholder="제목"
                     type="text"/>
-        
+         */}
                     <Editor
                         ref={contentInput}
                         value={state.diary}
@@ -192,7 +201,7 @@ const Write=(data)=>{
                     
 
                     <Menu>
-                    <BtnLink to="/WriteQuestion">                   
+                    <BtnLink to="/writequestion">                   
                         <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                     </BtnLink>
                     </Menu>

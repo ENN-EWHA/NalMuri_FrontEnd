@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 function App() {
     useEffect(() => {
         axios
-            .get("/board/token-test"
+            .get("/board/cu"
                 
             )
             .then((response) => {

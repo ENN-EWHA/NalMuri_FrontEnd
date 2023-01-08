@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from 'axios';
 import { Link as LinkR } from "react-router-dom";
 import Header from '../Header.js';
+import { useSelector } from 'react-redux';
 const WriteQuestion=()=>{
     // const [answer,setAnswer]=useState({
     //     date:'new Date(date).getTime()',
@@ -33,18 +34,18 @@ const WriteQuestion=()=>{
         return date.toISOString().slice(0,10);
     };
 
-    const[date, setDate]=useState("");
+    const[writeDate, setDate]=useState("");
     const[cardAnswer,setCardAnswer]=useState("");
-
+    const userid = useSelector((id) => id.auth.userData.userid);
     const[cardquestion,setCardQuestion]=useState([]);
 
     
     useEffect(() => {
         axios
-            .get("./board/card/request/5"
+            .get("./board/card/request/4"
             )
             .then((response) => {
-                console.log(response.data);
+               
                 setCardQuestion(response.data);
                 
                 
@@ -54,9 +55,25 @@ const WriteQuestion=()=>{
             });
     }, []);
 
+        
+    // useEffect(() => {
+    //     axios
+    //         .get("./board/question/cu/list/5"
+    //         )
+    //         .then((response) => {
+    //             console.log(response.data);
+                
+                
+                
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }, []);
+
     const[state,setState]=useState({
-        date:"",
-        cardquestion:"",
+        userid,
+        writeDate:"",
         cardAnswer:"",
 
     });
@@ -67,9 +84,8 @@ const WriteQuestion=()=>{
             [e.target.name]:e.target.value
         });
     };
-    const handleSubmit=()=>{
-        console.log(state);
-        alert("저장");
+    const handleSubmit=(e)=>{
+      
 
           
         axios
@@ -80,6 +96,8 @@ const WriteQuestion=()=>{
         .catch((error)=>{
             console.log(error);
         })
+        console.log(state);
+        alert("저장");
     };
 
         
@@ -88,9 +106,9 @@ const WriteQuestion=()=>{
         <Container>
             <Datediv>
                     <Date
-                        value={state.date}
+                        value={state.writeDate}
                         onChange={handleChangeState}
-                        name="date"
+                        name="writeDate"
                         type="date"/>
                     </Datediv>
          
@@ -114,7 +132,7 @@ const WriteQuestion=()=>{
             </Answeringcontainer>
             <ButtonDiv>
                 <Button1>
-                <BtnLink to="/MainAfterLogin">
+                <BtnLink to="/writequestion">
                         <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                 </BtnLink>
                 </Button1>
