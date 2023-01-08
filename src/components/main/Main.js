@@ -22,7 +22,7 @@ const Main = () => {
             </Canvas1>
             <Canvas2>
                 <Left>
-                    <CardImg src={cardImg} width="286px"></CardImg>
+                    <CardImg src={cardImg}></CardImg>
                 </Left>
                 <Right>
                     <Title>하루를 마무리 하는</Title>
