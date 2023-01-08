@@ -17,8 +17,8 @@ export const authSlice = createSlice({
             state.userData = action.payload;
         },
         clearUser: (state, action) => {
-            state.userid = "";
-            state.userpw = "";
+            state.userToken = "";
+            state.userData = "";
             state.isLogin = false;
         },
     },

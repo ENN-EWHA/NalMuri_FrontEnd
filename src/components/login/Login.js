@@ -23,15 +23,13 @@ const Login = () => {
         }
     }, [loading]);
 
-    //input data가 변화할 때마다 value 변경
+    //event
     const handleId = (e) => {
         setId(e.target.value);
     };
     const handlePw = (e) => {
         setPw(e.target.value);
     };
-
-    //login 클릭 시
     const onClickLogin = (e) => {
         e.preventDefault();
 
@@ -58,9 +56,8 @@ const Login = () => {
                         .catch((err) => {
                             console.log(err);
                         });
+                    navigate("/mainAfterLogin");
                 }
-
-                navigate("/mainAfterLogin");
             })
             .catch((error) => {
                 console.log(error);

@@ -13,7 +13,6 @@ const Diaries = () => {
 
     //axios
     useEffect(() => {
-        console.log(uid);
         setUserid(uid);
 
         axios
