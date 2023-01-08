@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Emotion from "./emotionSort/Emotion";
-import AddButton from "./dateSort/AddButton";
-import Diaries from "./dateSort/Diaries";
+import AddButton from "./diarySort/AddButton";
+import Diaries from "./diarySort/Diaries";
 
 const Sort = () => {
     const [currentTab, setCurrentTab] = useState(0);
     const menuArray = [
         {
-            name: "날짜 순으로 보기",
+            name: "일기 모아보기",
             content: (
                 <>
                     <Diaries />
@@ -16,7 +16,7 @@ const Sort = () => {
                 </>
             ),
         },
-        { name: "감정별 모아보기", content: <Emotion /> },
+        { name: "질문 카드 모아보기", content: <Emotion /> },
     ];
 
     const MenuHandler = (index) => {
@@ -58,7 +58,7 @@ const Container = styled.div`
     margin: 30px 0;
 `;
 const Sortmenu = styled.div`
-    width: 150px;
+    width: 180px;
     border-bottom: ${(props) => props.border};
     display: flex;
     justify-content: center;
