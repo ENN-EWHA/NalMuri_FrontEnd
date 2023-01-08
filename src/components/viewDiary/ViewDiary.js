@@ -13,8 +13,6 @@ const ViewDiary = (data) => {
     const [carddata, setCarddata] = useState("");
     let cardInfo = "";
 
-    console.log(data.data);
-
     //question card 정보
     useEffect(() => {
         setUserid(uid);
@@ -55,7 +53,7 @@ const ViewDiary = (data) => {
                 </Right>
             </Contents>
             <Buttons>
-                <DeleteButton />
+                <DeleteButton data={data} />
             </Buttons>
         </Container>
     );

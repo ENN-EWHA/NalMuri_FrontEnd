@@ -5,15 +5,14 @@ const Diary = (data) => {
     return (
         <Link
             to="viewDiary"
-            state={{ data: data.props }}
+            state={{ data: data.data }}
             style={{ color: "black", textDecoration: "none" }}
         >
             <Container>
                 <Color></Color>
                 <Contents>
-                    <Date>{data.props.writeDate}</Date>
-                    <Title>{data.props.diary}</Title>
-                    <Tag>기쁨</Tag>
+                    <Date>{data.data.writeDate}</Date>
+                    <Title>{data.data.diary}</Title>
                 </Contents>
             </Container>
         </Link>

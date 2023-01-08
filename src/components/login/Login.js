@@ -40,7 +40,7 @@ const Login = () => {
         axios
             .post("/auth/login", body)
             .then((res) => {
-                dispatch(loginUser(res.data.accessToken));
+                dispatch(loginUser(res.data));
                 if (res.data.accessToken) {
                     localStorage.setItem("loginToken", res.data.accessToken);
 

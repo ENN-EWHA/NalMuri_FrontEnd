@@ -28,7 +28,7 @@ const Diaries = () => {
         if (data.length == 0) {
             result.push(<First />);
         } else {
-            data.map((data) => result.push(<Diary props={data} />));
+            data.map((data) => result.push(<Diary data={data} />));
         }
         return result;
     };
