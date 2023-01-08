@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DeleteButton from "./DeleteButton";
 import Diary from "./Diary";
 import QuestionAnswer from "./QuestionAnswer";
 import QuestionCard from "./QuestionCard";
@@ -17,6 +18,9 @@ const ViewDiary = () => {
                     <QuestionAnswer />
                 </Right>
             </Contents>
+            <Buttons>
+                <DeleteButton />
+            </Buttons>
         </Container>
     );
 };
@@ -54,5 +58,11 @@ const Right = styled(Left)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+`;
+const Buttons = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
 `;
