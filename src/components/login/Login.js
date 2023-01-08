@@ -56,7 +56,7 @@ const Login = () => {
                         .catch((err) => {
                             console.log(err);
                         });
-                    navigate("/mainAfterLogin");
+                    navigate("/");
                 }
             })
             .catch((error) => {

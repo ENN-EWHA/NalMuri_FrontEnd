@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";
@@ -8,16 +8,20 @@ import ViewDiaryPage from "./pages/ViewDiaryPage";
 import LoginPage from "./pages/LoginPage";
 import WriteDiaryPage from "./pages/WriteDiaryPage";
 import WriteQuestionPage from "./pages/WriteQuestionPage";
+import { useSelector } from "react-redux";
 
 function App() {
+    const isLogin = useSelector((state) => state.auth.isLogin);
+
     return (
         <Router>
             <GlobalStyle />
             <Routes>
-                <Route path="/" element={<MainPage></MainPage>}></Route>
                 <Route
-                    path="/mainafterlogin"
-                    element={<MainAfterLoginPage />}
+                    path="/"
+                    element={
+                        isLogin ? <MainAfterLoginPage /> : <MainPage></MainPage>
+                    }
                 ></Route>
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/viewdiary" element={<ViewDiaryPage />} />
