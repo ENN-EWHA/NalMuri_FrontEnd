@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useRef,useEffect} from 'react'
 import styled from "styled-components";
 import axios from 'axios';
 import { Link as LinkR } from "react-router-dom";
@@ -38,7 +38,7 @@ const WriteQuestion=()=>{
     const[cardAnswer,setCardAnswer]=useState("");
     const userid = useSelector((id) => id.auth.userData.userid);
     const[cardquestion,setCardQuestion]=useState([]);
-
+  
     
     useEffect(() => {
         axios
@@ -47,7 +47,7 @@ const WriteQuestion=()=>{
             .then((response) => {
                
                 setCardQuestion(response.data);
-                
+               
                 
             })
             .catch((error) => {
@@ -75,6 +75,7 @@ const WriteQuestion=()=>{
         userid,
         writeDate:"",
         cardAnswer:"",
+        
 
     });
 
@@ -83,10 +84,9 @@ const WriteQuestion=()=>{
             ...state,
             [e.target.name]:e.target.value
         });
+      
     };
     const handleSubmit=(e)=>{
-      
-
           
         axios
         .post("./board/card",state)
@@ -100,7 +100,7 @@ const WriteQuestion=()=>{
         alert("저장");
     };
 
-        
+    const answerInput=useRef();
 
     return(
         <Container>
@@ -115,7 +115,7 @@ const WriteQuestion=()=>{
            <Answeringcontainer>
                 <QuestionCont>
                     <div>{cardquestion.cardquestion}</div>
-                  
+      
                    
                 </QuestionCont>
                 
@@ -123,6 +123,7 @@ const WriteQuestion=()=>{
 
                 
                 <AnswerCont
+                ref={answerInput}
                  value={state.cardAnswer}
                         onChange={handleChangeState}
                         name="cardAnswer"
@@ -148,7 +149,6 @@ export default WriteQuestion;
 
 const Container=styled.div`
 margin:auto;
-
 `;
 const Answeringcontainer=styled.div`
 height: 1000px;
@@ -157,8 +157,6 @@ margin-top:50px;
 width:60%;
 display: flex;
 justify-content:space-between;
-
-
 `;
 const Date=styled.input`
 border:1px solid;
@@ -186,11 +184,9 @@ height: 70%;
 width:500px;
 padding: 0 20px 0px 20px;
 border: 1px solid black;
-
 `;
 
 const BtnLink=styled(LinkR)`
-
 background: lightgray;
 white-space: nowrap;
 padding: 10px 22px;
@@ -217,18 +213,15 @@ const Button1=styled.button`
 display:flex;
 justify-content:flex-end;
 margin-top:20px;
-
 `;
 const ButtonDiv=styled.div`
 width:100%;
 display:flex;
 justify-content:flex-end;
-
 `;
 
 const Button2=styled.button`
 display:flex;
 justify-content:flex-end;
 margin-top:20px;
-
 `;

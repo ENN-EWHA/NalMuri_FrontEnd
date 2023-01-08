@@ -11,6 +11,55 @@ import WriteQuestionPage from "./pages/WriteQuestionPage";
 import { useSelector } from "react-redux";
 
 function App() {
+    // useEffect(() => {
+    //     axios({
+    //         method: 'GET',
+    //         url: "./board/question/nlp",
+    //         body: {
+    //           "sentence":"집에가고싶다요"
+    //         }
+          
+    //       }, { withCredentials : true })
+    //         .then((Response)=>{
+    //           console.log(Response.data);
+    //       }).catch((Error)=>{
+    //           console.log(Error);
+    //       })
+    // })
+        // axios
+
+
+    // useEffect(() => {
+    //     axios
+    //         .post("/board",{userid:"1", writeDate:"2022-01-05", diary:"1"}
+                
+    //         )
+    //         .then((response) => {
+    //             console.log("보내짐");
+                
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }, []);
+
+    // useEffect(() => {
+    //     axios
+    //         .get("/board/question/nlp", {
+    //             "sentence":"안녕하세요"
+    //             }
+     
+    //         )
+    //         .then((response) => console.log(response.data))
+    //         .catch((error) => console.log(error));
+    // }, []);
+    // useEffect(() => {
+    //         fetch("http://34.64.209.5:8080/board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
+    //           .then((response) => console.log("response:", response))
+    //           .catch((error) => console.log("error:", error));
+    // })
+
+
     const isLogin = useSelector((state) => state.auth.isLogin);
 
     return (
