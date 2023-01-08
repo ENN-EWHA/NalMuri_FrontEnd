@@ -36,8 +36,27 @@ const WriteQuestion=()=>{
     const[date, setDate]=useState("");
     const[cardAnswer,setCardAnswer]=useState("");
 
+    const[cardquestion,setCardQuestion]=useState([]);
+
+    
+    useEffect(() => {
+        axios
+            .get("./board/card/request/5"
+            )
+            .then((response) => {
+                console.log(response.data);
+                setCardQuestion(response.data);
+                
+                
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     const[state,setState]=useState({
         date:"",
+        cardquestion:"",
         cardAnswer:"",
 
     });
@@ -51,7 +70,19 @@ const WriteQuestion=()=>{
     const handleSubmit=()=>{
         console.log(state);
         alert("저장");
+
+          
+        axios
+        .post("./board/card",state)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     };
+
+        
 
     return(
         <Container>
@@ -65,10 +96,14 @@ const WriteQuestion=()=>{
          
            <Answeringcontainer>
                 <QuestionCont>
-                    질문 여기다가 불러오면? 
-
-
+                    <div>{cardquestion.cardquestion}</div>
+                  
+                   
                 </QuestionCont>
+                
+
+
+                
                 <AnswerCont
                  value={state.cardAnswer}
                         onChange={handleChangeState}
@@ -79,7 +114,7 @@ const WriteQuestion=()=>{
             </Answeringcontainer>
             <ButtonDiv>
                 <Button1>
-                <BtnLink to="/EmotionCard">
+                <BtnLink to="/MainAfterLogin">
                         <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
                 </BtnLink>
                 </Button1>
@@ -100,6 +135,7 @@ margin:auto;
 const Answeringcontainer=styled.div`
 height: 1000px;
 margin:auto;
+margin-top:50px;
 width:60%;
 display: flex;
 justify-content:space-between;
@@ -114,14 +150,17 @@ border-radius:5px;
 const Datediv=styled.div`
 padding-top:50px;
 display:flex;
+justify-content:center;
 `;
 const QuestionCont=styled.div`
 height:70%;
 width:500px;
-align-item:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
 padding: 0 20px 0px 20px;
 border: 1px solid black;
-background-color:#DDEAF9;
+background:radial-gradient(circle, rgba(158,203,255,1) 11%, rgba(221,234,249,1) 35%, rgba(158,203,255,1) 100%);
 `;
 
 const AnswerCont=styled.input`

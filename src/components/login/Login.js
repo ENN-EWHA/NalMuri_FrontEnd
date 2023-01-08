@@ -47,6 +47,7 @@ const Login = () => {
             .then((res) => {
                 console.log(res);
                 dispatch(loginUser(res.data.accessToken));
+                console.log(id);
                 navigate("/mainAfterLogin");
             })
             .catch((error) => {

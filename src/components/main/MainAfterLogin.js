@@ -11,6 +11,7 @@ const MainAfterLogin = () => {
             <Slide />
             <Sort />
         </Container>
+        
     );
 };
 

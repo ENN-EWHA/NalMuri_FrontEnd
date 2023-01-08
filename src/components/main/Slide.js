@@ -5,6 +5,8 @@ const Slide = () => {
         <Container>
             <Title>오늘 나의 감정은?</Title>
             <Text>나만의 날무리를 만들어 보세요</Text>
+           
+            
         </Container>
     );
 };
