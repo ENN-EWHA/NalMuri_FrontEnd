@@ -2,12 +2,15 @@ import Header from "../components/Header";
 import ViewDiary from "../components/viewDiary/ViewDiary";
 import styled from "styled-components";
 import Footer from "../components/Footer";
+import { useLocation } from "react-router-dom";
 
 const ViewDiaryPage = () => {
+    let data = useLocation();
+
     return (
         <Container>
             <Header />
-            <ViewDiary />
+            <ViewDiary data={data.state.data} />
             <Footer />
         </Container>
     );

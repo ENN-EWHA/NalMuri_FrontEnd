@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-const Diary = () => {
+const Diary = (diary) => {
     return (
         <Container>
-            <Line></Line>
-            <Text>일기 내용</Text>
-            <Line></Line>
+            <Text>{diary.diary}</Text>
         </Container>
     );
 };
@@ -18,13 +16,10 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    border-top: 1px solid #a7d8ff;
+    border-bottom: 1px solid #a7d8ff;
 `;
 
-const Line = styled.div`
-    height: 1px;
-    width: 100%;
-    background-color: #a7d8ff;
-`;
 const Text = styled.div`
     width: 100%;
     height: 448px;
