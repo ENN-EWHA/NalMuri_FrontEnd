@@ -1,19 +1,67 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-const Diary = (data) => {
+const Diary = ({ data }) => {
+    const colorList = [
+        "#ACD6B9",
+        "#FDBF88",
+        "#F7778C",
+        "#8DB6E9",
+        "#BDBFC0",
+        "#FFE880",
+        "#BBACE0",
+    ];
+    const [carddata, setCarddata] = useState("");
+    const [userId, setUserId] = useState("");
+    const uid = useSelector((state) => state.auth.userData.userid);
+    let currentCard = "";
+
+    //question card 정보
+    useEffect(() => {
+        setUserId(uid);
+
+        axios
+            .get(`/board/question/${uid}`)
+            .then((res) => {
+                setCarddata(res.data);
+            })
+            .catch((error) => console.log(error));
+    }, [uid, userId]);
+
+    //현재 card 정보
+    if (data.cardid != -1) {
+        try {
+            carddata.map((it) => {
+                if (it.cardid == data.cardid) {
+                    currentCard = it;
+                    return;
+                }
+            });
+        } catch (err) {
+            currentCard = carddata;
+        }
+    }
+
     return (
         <Link
             to="viewDiary"
-            state={{ data: data.props }}
+            state={{ data: data, currentCard: currentCard }}
             style={{ color: "black", textDecoration: "none" }}
         >
             <Container>
-                <Color></Color>
+                <Color
+                    color={
+                        currentCard.emotion + 1
+                            ? colorList[currentCard.emotion]
+                            : "#EBEBEB"
+                    }
+                ></Color>
                 <Contents>
-                    <Date>{data.props.writeDate}</Date>
-                    <Title>{data.props.diary}</Title>
-                    <Tag>기쁨</Tag>
+                    <Date>{data.writeDate}</Date>
+                    <Title>{data.diary}</Title>
                 </Contents>
             </Container>
         </Link>
@@ -31,7 +79,7 @@ const Color = styled.div`
     border-radius: 10px 10px 0px 0px;
     height: 105px;
     width: 100%;
-    background-color: #ffe880;
+    background-color: ${(props) => props.color};
     filter: blur(4px);
 `;
 const Contents = styled.div`
@@ -46,14 +94,4 @@ const Date = styled.div`
 const Title = styled(Date)`
     font-size: 14px;
     padding-bottom: 10px;
-`;
-const Tag = styled.div`
-    border-radius: 16px;
-    height: 15px;
-    width: 77px;
-    background-color: #d7edff;
-
-    text-align: center;
-    vertical-align: middle;
-    font-size: 12px;
 `;

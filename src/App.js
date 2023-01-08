@@ -1,4 +1,4 @@
-import React ,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import { createGlobalStyle } from "styled-components";
@@ -8,8 +8,8 @@ import ViewDiaryPage from "./pages/ViewDiaryPage";
 import LoginPage from "./pages/LoginPage";
 import WriteDiaryPage from "./pages/WriteDiaryPage";
 import WriteQuestionPage from "./pages/WriteQuestionPage";
-import axios from 'axios';
 import { useSelector } from "react-redux";
+
 function App() {
     // useEffect(() => {
     //     axios({
@@ -63,7 +63,6 @@ function App() {
     const isLogin = useSelector((state) => state.auth.isLogin);
 
     return (
-        
         <Router>
             <GlobalStyle />
             <Routes>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const QuestionAnswer = (answer) => {
+const QuestionAnswer = ({ answer }) => {
     return (
         <Answer>
-            <Text>{answer.answer != "null" ? answer.answer : ""}</Text>
+            <Text>{answer != "null" ? answer : ""}</Text>
         </Answer>
     );
 };

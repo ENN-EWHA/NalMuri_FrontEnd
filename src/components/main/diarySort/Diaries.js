@@ -14,13 +14,14 @@ const Diaries = () => {
     //axios
     useEffect(() => {
         setUserid(uid);
-
-        axios
-            .get(`/board/${userid}`)
-            .then((res) => {
-                setData(res.data);
-            })
-            .catch((error) => console.log(error));
+        if (userid) {
+            axios
+                .get(`/board/${userid}`)
+                .then((res) => {
+                    setData(res.data);
+                })
+                .catch((error) => console.log(error));
+        }
     }, [uid, userid]);
 
     const renderDiary = (data) => {
@@ -28,7 +29,7 @@ const Diaries = () => {
         if (data.length == 0) {
             result.push(<First />);
         } else {
-            data.map((data) => result.push(<Diary props={data} />));
+            data.map((data) => result.push(<Diary data={data} />));
         }
         return result;
     };

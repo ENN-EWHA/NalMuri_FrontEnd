@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const Diary = (diary) => {
+const Diary = ({ diary }) => {
     return (
         <Container>
-            <Text>{diary.diary}</Text>
+            <Text>{diary}</Text>
         </Container>
     );
 };

@@ -5,12 +5,14 @@ import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 
 const ViewDiaryPage = () => {
-    let data = useLocation();
+    let location = useLocation();
+    const data = location.state.data;
+    const currentCard = location.state.currentCard;
 
     return (
         <Container>
             <Header />
-            <ViewDiary data={data.state.data} />
+            <ViewDiary data={data} currentCard={currentCard} />
             <Footer />
         </Container>
     );
