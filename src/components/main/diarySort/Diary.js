@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Diary = () => {
+const Diary = (data) => {
     return (
         <Link
             to={"/viewdiary"}
@@ -10,8 +10,8 @@ const Diary = () => {
             <Container>
                 <Color></Color>
                 <Contents>
-                    <Date>2022.11.25</Date>
-                    <Title>즐거운 하루였다.</Title>
+                    <Date>{data.props.writeDate}</Date>
+                    <Title>{data.props.diary}</Title>
                     <Tag>기쁨</Tag>
                 </Contents>
             </Container>

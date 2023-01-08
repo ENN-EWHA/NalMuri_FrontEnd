@@ -1,10 +1,16 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const First = () => {
     return (
         <Container>
             <Text>일기를 작성하고 첫 날무리를 시작해 보세요</Text>
-            <Button>일기 작성하기</Button>
+            <Link
+                to={"/writediary"}
+                style={{ color: "black", textDecoration: "none" }}
+            >
+                <Button>일기 작성하기</Button>
+            </Link>
         </Container>
     );
 };
@@ -18,6 +24,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 50px;
 `;
 const Text = styled.div`
     text-align: center;
@@ -37,5 +44,5 @@ const Button = styled.button`
     padding: 16px 160px;
     background-color: #edf4ff;
 
-    margin-top: 50px;
+    cursor: pointer;
 `;

@@ -2,13 +2,10 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../reducer/authSlice";
+import { useDispatch } from "react-redux";
+import { loginUser, userInfo } from "../../reducer/authSlice";
 
 const Login = () => {
-    let auth = useSelector((state) => {
-        return state.auth;
-    });
     const dispatch = useDispatch();
 
     const [id, setId] = useState("");
@@ -26,15 +23,13 @@ const Login = () => {
         }
     }, [loading]);
 
-    //input data가 변화할 때마다 value 변경
+    //event
     const handleId = (e) => {
         setId(e.target.value);
     };
     const handlePw = (e) => {
         setPw(e.target.value);
     };
-
-    //login 클릭 시
     const onClickLogin = (e) => {
         e.preventDefault();
 
@@ -45,16 +40,37 @@ const Login = () => {
         axios
             .post("/auth/login", body)
             .then((res) => {
-                console.log(res);
                 dispatch(loginUser(res.data.accessToken));
-                console.log(id);
-                navigate("/mainAfterLogin");
+                if (res.data.accessToken) {
+                    localStorage.setItem("loginToken", res.data.accessToken);
+
+                    //token 정보를 사용하여 user 정보를 불러온 뒤 저장
+                    axios.defaults.headers.common[
+                        "Authorization"
+                    ] = `Bearer ${res.data.accessToken}`;
+                    axios
+                        .get("/member/my/info")
+                        .then((res) => {
+                            dispatch(userInfo(res.data));
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                    navigate("/");
+                }
             })
             .catch((error) => {
                 console.log(error);
                 alert("ID 혹은 비밀번호가 틀렸습니다.");
             });
         setLoading(true);
+    };
+
+    //enter
+    const enterkey = (e) => {
+        if (e.key == "Enter") {
+            onClickLogin(e);
+        }
     };
 
     return (
@@ -67,7 +83,12 @@ const Login = () => {
                 </Frame>
                 <Frame>
                     <Text>비밀번호</Text>
-                    <Input type="password" value={pw} onChange={handlePw} />
+                    <Input
+                        type="password"
+                        value={pw}
+                        onChange={handlePw}
+                        onKeyPress={enterkey}
+                    />
                 </Frame>
             </InputBox>
             <LoginButton
