@@ -1,22 +1,80 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../reducer/authSlice";
 
 const Login = () => {
+    let auth = useSelector((state) => {
+        return state.auth;
+    });
+    const dispatch = useDispatch();
+
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
+
+    const [loading, setLoading] = useState(""); //loading 중에는 login 버튼을 클릭할 수 없음
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loading) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1500);
+        }
+    }, [loading]);
+
+    //input data가 변화할 때마다 value 변경
+    const handleId = (e) => {
+        setId(e.target.value);
+    };
+    const handlePw = (e) => {
+        setPw(e.target.value);
+    };
+
+    //login 클릭 시
+    const onClickLogin = (e) => {
+        e.preventDefault();
+
+        let body = {
+            userid: id,
+            userpw: pw,
+        };
+        axios
+            .post("/auth/login", body)
+            .then((res) => {
+                console.log(res);
+                dispatch(loginUser(res.data.accessToken));
+                navigate("/mainAfterLogin");
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("ID 혹은 비밀번호가 틀렸습니다.");
+            });
+        setLoading(true);
+    };
+
     return (
         <Container>
             <Title>로그인</Title>
             <InputBox>
                 <Frame>
                     <Text>아이디</Text>
-                    <Input />
+                    <Input value={id} onChange={handleId} />
                 </Frame>
                 <Frame>
                     <Text>비밀번호</Text>
-                    <Input type="password" />
+                    <Input type="password" value={pw} onChange={handlePw} />
                 </Frame>
             </InputBox>
-            <LoginButton>
-                <Text>가입하기</Text>
+            <LoginButton
+                type="submit"
+                disabled={loading}
+                onClick={onClickLogin}
+            >
+                <Text>로그인 하기</Text>
             </LoginButton>
             <Text>
                 <Link
@@ -82,4 +140,5 @@ const LoginButton = styled.button`
     gap: 10px;
     background-color: #a7d8ff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 `;

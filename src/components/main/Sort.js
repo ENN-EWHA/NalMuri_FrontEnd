@@ -1,12 +1,51 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import Emotion from "./emotionSort/Emotion";
+import First from "./dateSort/First";
+import AddButton from "./dateSort/AddButton";
+import Diary from "./dateSort/Diary";
 
 const Sort = () => {
+    const [currentTab, setCurrentTab] = useState(0);
+    const menuArray = [
+        {
+            name: "날짜 순으로 보기",
+            content: (
+                <>
+                    <First />
+                    <Diary />
+                    <AddButton />
+                </>
+            ),
+        },
+        { name: "감정별 모아보기", content: <Emotion /> },
+    ];
+
+    const MenuHandler = (index) => {
+        setCurrentTab(index);
+    };
+
     return (
-        <Container>
-            <Date>날짜 순으로 보기</Date>
-            <Emotion>감정별 모아보기</Emotion>
-            <QuestonCard>질문 카드 모아보기</QuestonCard>
-        </Container>
+        <>
+            <Container>
+                {menuArray.map((element, index) => {
+                    return (
+                        <Sortmenu
+                            key={index}
+                            border={
+                                currentTab === index
+                                    ? "2px solid #212529"
+                                    : "none"
+                            }
+                            onClick={() => MenuHandler(index)}
+                        >
+                            {element.name}
+                        </Sortmenu>
+                    );
+                })}
+            </Container>
+            <Content>{menuArray[currentTab].content}</Content>
+        </>
     );
 };
 
@@ -20,17 +59,16 @@ const Container = styled.div`
     gap: 55px;
     margin: 30px 0;
 `;
-const Date = styled.div`
+const Sortmenu = styled.div`
     width: 150px;
-    border-bottom: 2px solid #212529;
+    border-bottom: ${(props) => props.border};
     display: flex;
     justify-content: center;
     padding: 10px 0;
     cursor: pointer;
 `;
-const Emotion = styled(Date)`
-    border: none;
-`;
-const QuestonCard = styled(Date)`
-    border: none;
+
+const Content = styled.div`
+    height: 100%;
+    width: 100%;
 `;
