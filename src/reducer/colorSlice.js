@@ -9,8 +9,8 @@ export const colorSlice = createSlice({
             { color: "#F7778C", lightColor: "#FDD7DD", emotion: "분노" },
             { color: "#8DB6E9", lightColor: "#DDEAF9", emotion: "슬픔" },
             { color: "#BDBFC0", lightColor: "#ECECED", emotion: "중립" },
-            { color: "#FFE880", lightColor: "#FFECDC", emotion: "기쁨" },
-            { color: "#BBACE0", lightColor: "#FFF9D9", emotion: "혐오" },
+            { color: "#FFE880", lightColor: "#FFF9D9", emotion: "기쁨" },
+            { color: "#BBACE0", lightColor: "#EDE8F8", emotion: "혐오" },
         ],
     },
     reducers: {

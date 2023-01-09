@@ -8,7 +8,7 @@ import axios from "axios";
 const Emotion = () => {
     const colorList = useSelector((state) => state.color.colorList);
 
-    let emoNum = 0;
+    const [emonum, setEmonum] = useState("");
     const [isClicked, setIsClicked] = useState(false);
     const [emocard, setEmocard] = useState("");
     const uid = useSelector((state) => state.auth.userData.userid);
@@ -19,49 +19,54 @@ const Emotion = () => {
 
         if (userId) {
             axios
-                .get(`/board/question/${userId}/list/${emoNum}`)
+                .get(`/board/question/${userId}/list/${emonum}`)
                 .then((res) => {
                     setEmocard(res.data);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    setEmocard(0);
+                });
         }
-    }, [uid, userId, emoNum]);
+    }, [uid, userId, emonum]);
 
     const render = () => {
         const result = [];
         if (isClicked) {
-            try {
+            if (emocard) {
                 result.push(
                     emocard.map((it) => {
                         return (
-                            <Card
-                                color={colorList[emoNum].lightColor}
-                                data={it.cardquestion}
-                                onMouseDown={() => {
+                            <Button
+                                onClick={() => {
                                     setIsClicked(false);
                                 }}
-                            />
+                            >
+                                <Card
+                                    color={colorList[emonum].lightColor}
+                                    data={it.cardquestion}
+                                />
+                            </Button>
                         );
                     })
                 );
-            } catch (err) {
+            } else {
                 result.push();
+                alert("해당 감정의 질문 카드가 없습니다.");
+                setIsClicked(false);
             }
         } else {
             result.push(
                 colorList.map((it) => {
                     return (
-                        <Card
-                            color={it.lightColor}
-                            onMouseDown={(e) => {
-                                e.preventDefault();
-                            }}
+                        <Button
                             onClick={() => {
-                                emoNum = colorList.indexOf(it);
+                                setEmonum(colorList.indexOf(it));
                                 setIsClicked(true);
                             }}
-                            data={it.emotion}
-                        />
+                        >
+                            <Card color={it.lightColor} data={it.emotion} />
+                        </Button>
                     );
                 })
             );
@@ -83,4 +88,8 @@ const Container = styled.div`
     padding-top: 20px;
 
     flex-wrap: wrap;
+`;
+const Button = styled.button`
+    border: none;
+    background-color: transparent;
 `;
