@@ -97,7 +97,6 @@ const Logo = styled.div`
     font-size: 25px;
     line-height: auto;
     color: #000000;
-    font-weight: 700;
 `;
 const Right = styled.div`
     display: flex;

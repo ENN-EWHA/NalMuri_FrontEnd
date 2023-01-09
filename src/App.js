@@ -18,7 +18,7 @@ function App() {
     //         body: {
     //           "sentence":"집에가고싶다요"
     //         }
-          
+
     //       }, { withCredentials : true })
     //         .then((Response)=>{
     //           console.log(Response.data);
@@ -26,17 +26,16 @@ function App() {
     //           console.log(Error);
     //       })
     // })
-        // axios
-
+    // axios
 
     // useEffect(() => {
     //     axios
     //         .post("/board",{userid:"1", writeDate:"2022-01-05", diary:"1"}
-                
+
     //         )
     //         .then((response) => {
     //             console.log("보내짐");
-                
+
     //         })
     //         .catch((error) => {
     //             console.log(error);
@@ -48,7 +47,7 @@ function App() {
     //         .get("/board/question/nlp", {
     //             "sentence":"안녕하세요"
     //             }
-     
+
     //         )
     //         .then((response) => console.log(response.data))
     //         .catch((error) => console.log(error));
@@ -58,7 +57,6 @@ function App() {
     //           .then((response) => console.log("response:", response))
     //           .catch((error) => console.log("error:", error));
     // })
-
 
     const isLogin = useSelector((state) => state.auth.isLogin);
 
@@ -89,10 +87,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 
     font-family: 'NanumSquare';
-    src:url("https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css");
-    font-weight: 400;
-    font-size: 18px;
-    color:#212529;
     }
 `;
 
