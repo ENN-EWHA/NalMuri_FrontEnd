@@ -67,7 +67,7 @@ const FindPw = () => {
                     onKeyPress={enterkey}
                 />
             </Frame>
-            <Button onClick={onClickFindid}>아이디 찾기</Button>
+            <Button onClick={onClickFindid}>비밀번호 찾기</Button>
         </Container>
     );
 };
