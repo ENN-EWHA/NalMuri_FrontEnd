@@ -18,4 +18,5 @@ const CardTemplate = styled.div`
     justify-content: center;
     align-items: center;
     padding: 20px;
+    font-size: 18px;
 `;

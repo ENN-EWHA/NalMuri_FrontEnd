@@ -7,6 +7,7 @@ import { clearUser } from "../reducer/authSlice";
 const Header = () => {
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.auth.isLogin);
+
     const renderRight = () => {
         const result = [];
 
@@ -44,6 +45,14 @@ const Header = () => {
                             style={{ color: "black", textDecoration: "none" }}
                         >
                             로그아웃
+                        </Link>
+                    </Text>
+                    <Text>
+                        <Link
+                            to={"/memdel"}
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
+                            회원 탈퇴
                         </Link>
                     </Text>
                 </Right>
@@ -111,4 +120,5 @@ const Text = styled.div`
     font-size: 18px;
     line-height: auto;
     color: #000000;
+    cursor: pointer;
 `;
