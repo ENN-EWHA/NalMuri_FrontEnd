@@ -14,7 +14,7 @@ const ViewDiary = ({ data, currentCard }) => {
                     <Diary diary={data.diary} />
                 </Left>
                 <Right>
-                    <QuestionCard card={currentCard.cardquestion} />
+                    <QuestionCard card={currentCard} />
                     <QuestionAnswer answer={currentCard.cardAnswer} />
                 </Right>
             </Contents>
@@ -59,6 +59,7 @@ const Right = styled(Left)`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 `;
 const Buttons = styled.div`
     display: flex;
