@@ -111,7 +111,7 @@ const Button = styled.button`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 16px 160px;
+    padding: 16px 0;
     background-color: #edf4ff;
     margin-top: 20px;
     cursor: pointer;
