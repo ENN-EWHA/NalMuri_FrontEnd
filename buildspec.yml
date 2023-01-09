@@ -1,17 +1,28 @@
 version: 0.2
+
+env:
+    variables:
+        S3_BUCKET: "S3_BUCKET_NAME"
+
 phases:
-install:
-    commands:
-        - npm install
-pre_build:
-    commands:
-        - npm run lint
-        # - command
-build:
-    commands:
-        - npm run build
-        # - command
-post_build:
-    commands:
-        - ls -al
-        - aws s3 cp --recursive dist/ s3://devhaks-sample-s3
+    install:
+        runtime-version:
+            nodejs: 12
+    pre_build:
+        commands:
+            - echo Installing source NPM dependencies
+            - npm install
+    build:
+        commands:
+            - echo Build started on `date`
+            - npm run build
+    post_build:
+        commands:
+            - echo Build completed on `date`
+            - echo Delete all resources in this bucket
+            - aws s3 rm s3://${S3_BUCKET} --recursive
+            - aws s3 sync ./build s3://hson-web-test.hist.co.kr
+cache:
+    paths:
+        - "/root/.npm/**/*"
+        - "node_modules/**/*"
