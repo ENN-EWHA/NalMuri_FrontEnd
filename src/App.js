@@ -10,6 +10,8 @@ import WriteDiaryPage from "./pages/WriteDiaryPage";
 import WriteQuestionPage from "./pages/WriteQuestionPage";
 import { useSelector } from "react-redux";
 import MemDelPage from "./pages/MemDelPage";
+import FindIdPage from "./pages/FindIdPage";
+import FindPwPage from "./pages/FindPwPage";
 
 function App() {
     // useEffect(() => {
@@ -77,6 +79,8 @@ function App() {
                 <Route path="/writediary" element={<WriteDiaryPage />} />
                 <Route path="/writeQuestion" element={<WriteQuestionPage />} />
                 <Route path="/memdel" element={<MemDelPage />} />
+                <Route path="/findid" element={<FindIdPage />} />
+                <Route path="/findpw" element={<FindPwPage />} />
             </Routes>
         </Router>
     );

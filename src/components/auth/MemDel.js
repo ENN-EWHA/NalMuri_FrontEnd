@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearUser } from "../../reducer/authSlice";
 
 const MemDel = () => {
-    const token = useSelector((state) => state.auth.userToken);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [pw, setPw] = useState("");
@@ -16,9 +15,6 @@ const MemDel = () => {
     const onClickDelete = () => {
         axios
             .delete("/member", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
                 data: {
                     checkPassword: pw,
                 },

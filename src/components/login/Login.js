@@ -106,7 +106,20 @@ const Login = () => {
                     아직 회원이 아니신가요?
                 </Link>
             </Text>
-            <Text>(아이디/비밀번호 찾기)</Text>
+            <TextFindAuth>
+                <Link
+                    to={"/findid"}
+                    style={{ color: "black", textDecoration: "none" }}
+                >
+                    <FindAuthButton>( 아이디 찾기 / </FindAuthButton>
+                </Link>
+                <Link
+                    to={"/findpw"}
+                    style={{ color: "black", textDecoration: "none" }}
+                >
+                    <FindAuthButton> 비밀번호 찾기 )</FindAuthButton>
+                </Link>
+            </TextFindAuth>
         </Container>
     );
 };
@@ -125,6 +138,10 @@ const Text = styled.div`
     vertical-align: middle;
     line-height: auto;
     color: #000000;
+`;
+const TextFindAuth = styled(Text)`
+    display: flex;
+    flex-direction: row;
 `;
 const Title = styled(Text)`
     font-size: 30px;
@@ -162,5 +179,10 @@ const LoginButton = styled.button`
     gap: 10px;
     background-color: #a7d8ff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+`;
+const FindAuthButton = styled.button`
+    border: none;
+    background-color: transparent;
     cursor: pointer;
 `;
