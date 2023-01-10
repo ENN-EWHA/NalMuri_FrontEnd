@@ -21,7 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "proxy": "http://34.64.209.5:8080",
-  "homepage": "http://ENN-EWHA.github.io/NalMuri",
+  "homepage": "https://enn-ewha.github.io/NalMuri/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
