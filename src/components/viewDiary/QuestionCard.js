@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
 const QuestionCard = ({ card }) => {
-    const colorList = useSelector((state) => state.color.colorList);
-
     return (
-        <Card color={colorList[card.emotion].lightColor}>
+        <Card>
             <Question>{card.cardquestion}</Question>
         </Card>
     );
@@ -19,7 +16,7 @@ const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid ${(props) => props.color};
+    border: 3px solid #edf4ff;
 `;
 
 const Question = styled.div`
