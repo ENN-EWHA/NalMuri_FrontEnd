@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/NalMuri/static/css/main.a11b3d1f.css",
+    "main.js": "/NalMuri/static/js/main.fc4198fd.js",
+    "static/media/NanumSquareOTF_acR.otf": "/NalMuri/static/media/NanumSquareOTF_acR.f257b7932f7dfa5253fb.otf",
+    "static/media/mainpageImg.png": "/NalMuri/static/media/mainpageImg.84ebe7a0a9aa7221546d.png",
+    "static/media/logo.png": "/NalMuri/static/media/logo.f17f1f96172f0514e13b.png",
+    "static/media/cardpageImg.png": "/NalMuri/static/media/cardpageImg.c0109e9125bef1507d00.png",
+    "static/media/githubIcon.png": "/NalMuri/static/media/githubIcon.f11021803f68852df283.png",
+    "static/media/plusIcon.png": "/NalMuri/static/media/plusIcon.3f7814da9b4063397222.png",
+    "index.html": "/NalMuri/index.html",
+    "main.a11b3d1f.css.map": "/NalMuri/static/css/main.a11b3d1f.css.map",
+    "main.fc4198fd.js.map": "/NalMuri/static/js/main.fc4198fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a11b3d1f.css",
+    "static/js/main.fc4198fd.js"
+  ]
+}
