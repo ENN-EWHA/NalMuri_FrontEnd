@@ -59,10 +59,29 @@ function App() {
     //         .then((response) => console.log(response.data))
     //         .catch((error) => console.log(error));
     // }, []);
+    // useEffect(() => {
+    //     fetch("./board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
+    //           .then((response) => console.log("response:", response))
+    //           .catch((error) => console.log("error:", error));
+    // })
+
     useEffect(() => {
-        fetch("./board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
-              .then((response) => console.log("response:", response))
-              .catch((error) => console.log("error:", error));
+        axios({
+            method: 'POST',
+            url: "http://34.64.209.5:5000/api",
+            data: JSON.stringify
+                ({
+                    sentence: '집에가고싶다요'
+                }),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+        }, { withCredentials: true })
+            .then((Response) => {
+                console.log(Response.data);
+            }).catch((Error) => {
+                console.log(Error);
+            })
     })
 
     const isLogin = useSelector((state) => state.auth.isLogin);
