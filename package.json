@@ -20,7 +20,7 @@
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "http://nalmuri.site:8080",
+  "proxy": "http://34.64.209.5:8080",
   "homepage": "https://enn-ewha.github.io/NalMuri/",
   "scripts": {
     "start": "react-scripts start",
