@@ -13,7 +13,7 @@ import MemDelPage from "./pages/MemDelPage";
 import FindIdPage from "./pages/FindIdPage";
 import FindPwPage from "./pages/FindPwPage";
 import { useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 function App() {
     // useEffect(() => {
