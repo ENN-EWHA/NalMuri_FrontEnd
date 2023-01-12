@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 import MemDelPage from "./pages/MemDelPage";
 import FindIdPage from "./pages/FindIdPage";
 import FindPwPage from "./pages/FindPwPage";
+import { useEffect } from "react";
+// import axios from "axios";
 
 function App() {
     // useEffect(() => {
@@ -19,7 +21,7 @@ function App() {
     //         method: 'GET',
     //         url: "./board/question/nlp",
     //         body: {
-    //           "sentence":"집에가고싶다요"
+    //             "sentence": "왜 안되는건데 진짜 짜증나"
     //         }
 
     //       }, { withCredentials : true })
@@ -29,6 +31,8 @@ function App() {
     //           console.log(Error);
     //       })
     // })
+
+    
     // axios
 
     // useEffect(() => {
@@ -55,11 +59,11 @@ function App() {
     //         .then((response) => console.log(response.data))
     //         .catch((error) => console.log(error));
     // }, []);
-    // useEffect(() => {
-    //         fetch("http://34.64.209.5:8080/board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
-    //           .then((response) => console.log("response:", response))
-    //           .catch((error) => console.log("error:", error));
-    // })
+    useEffect(() => {
+        fetch("./board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
+              .then((response) => console.log("response:", response))
+              .catch((error) => console.log("error:", error));
+    })
 
     const isLogin = useSelector((state) => state.auth.isLogin);
 
