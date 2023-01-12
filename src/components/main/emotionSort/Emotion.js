@@ -19,7 +19,7 @@ const Emotion = () => {
 
         if (userId) {
             axios
-                .get(`./board/question/${userId}/list/${emonum}`)
+                .get(`.:8080/board/question/${userId}/list/${emonum}`)
                 .then((res) => {
                     setEmocard(res.data);
                 })
