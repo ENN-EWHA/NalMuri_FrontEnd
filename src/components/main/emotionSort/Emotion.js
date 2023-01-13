@@ -36,6 +36,7 @@ const Emotion = () => {
             if (emocard.length === 0) {
                 alert("해당 감정의 질문 카드가 없습니다.");
                 setIsClicked(false);
+                setEmonum(-1);
             } else {
                 setResult(
                     emocard.map((it) => {
@@ -43,6 +44,7 @@ const Emotion = () => {
                             <Button
                                 onClick={() => {
                                     setIsClicked(false);
+                                    setEmonum(-1);
                                 }}
                             >
                                 <Card
