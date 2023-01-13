@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
 const Emotion = () => {
     const colorList = useSelector((state) => state.color.colorList);
 
-    const [emonum, setEmonum] = useState("");
+    const [emonum, setEmonum] = useState();
     const [isClicked, setIsClicked] = useState(false);
-    const [emocard, setEmocard] = useState("");
+    const [emocard, setEmocard] = useState([]);
     const uid = useSelector((state) => state.auth.userData.userid);
-    const [userId, setUserId] = useState("");
+    const [userId, setUserId] = useState(uid);
+    const [result, setResult] = useState([]);
 
     useEffect(() => {
         setUserId(uid);
-
+    }, [uid, userId]);
+    useEffect(() => {
         if (userId) {
             axios
                 .get(`./board/question/${userId}/list/${emonum}`)
@@ -24,17 +26,18 @@ const Emotion = () => {
                     setEmocard(res.data);
                 })
                 .catch((err) => {
+                    setEmocard([]);
                     console.log(err);
-                    setEmocard(0);
                 });
         }
-    }, [uid, userId, emonum]);
-
-    const render = () => {
-        const result = [];
+    }, [emonum]);
+    useEffect(() => {
         if (isClicked) {
-            if (emocard) {
-                result.push(
+            if (emocard.length === 0) {
+                alert("해당 감정의 질문 카드가 없습니다.");
+                setIsClicked(false);
+            } else {
+                setResult(
                     emocard.map((it) => {
                         return (
                             <Button
@@ -50,13 +53,12 @@ const Emotion = () => {
                         );
                     })
                 );
-            } else {
-                result.push();
-                alert("해당 감정의 질문 카드가 없습니다.");
-                setIsClicked(false);
             }
-        } else {
-            result.push(
+        }
+    }, [emocard]);
+    useEffect(() => {
+        if (!isClicked) {
+            setResult(
                 colorList.map((it) => {
                     return (
                         <Button
@@ -71,11 +73,9 @@ const Emotion = () => {
                 })
             );
         }
+    }, [isClicked]);
 
-        return result;
-    };
-
-    return <Container>{render()}</Container>;
+    return <Container>{result}</Container>;
 };
 export default Emotion;
 
