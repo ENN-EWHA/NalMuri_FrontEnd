@@ -38,6 +38,7 @@ const Header = () => {
                     <Text
                         onClick={() => {
                             dispatch(clearUser());
+                            window.localStorage.removeItem("loginToken");
                         }}
                     >
                         <Link

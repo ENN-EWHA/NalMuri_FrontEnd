@@ -14,6 +14,8 @@ import FindIdPage from "./pages/FindIdPage";
 import FindPwPage from "./pages/FindPwPage";
 import { useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginUser, userInfo } from "./reducer/authSlice";
 
 function App() {
     // useEffect(() => {
@@ -32,7 +34,6 @@ function App() {
     //       })
     // })
 
-    
     // axios
 
     // useEffect(() => {
@@ -66,23 +67,44 @@ function App() {
     // })
 
     useEffect(() => {
-        axios({
-            method: 'POST',
-            url: "http://34.64.209.5:5000/api",
-            data: JSON.stringify
-                ({
-                    sentence: '집에가고싶다요'
+        axios(
+            {
+                method: "POST",
+                url: "http://34.64.209.5:5000/api",
+                data: JSON.stringify({
+                    sentence: "집에가고싶다요",
                 }),
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
             },
-        }, { withCredentials: true })
+            { withCredentials: true }
+        )
             .then((Response) => {
                 console.log(Response.data);
-            }).catch((Error) => {
-                console.log(Error);
             })
-    })
+            .catch((Error) => {
+                console.log(Error);
+            });
+    });
+
+    //로그인 검증
+    const dispatch = useDispatch();
+    const accessToken = window.localStorage.getItem("loginToken");
+    if (accessToken) {
+        dispatch(loginUser(accessToken));
+        axios.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${accessToken}`;
+        axios
+            .get("/member/my/info")
+            .then((res) => {
+                dispatch(userInfo(res.data));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
     const isLogin = useSelector((state) => state.auth.isLogin);
 

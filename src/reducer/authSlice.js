@@ -5,7 +5,6 @@ export const authSlice = createSlice({
     initialState: {
         userToken: "",
         userData: [],
-        isLoading: false,
         isLogin: null,
     },
     reducers: {
