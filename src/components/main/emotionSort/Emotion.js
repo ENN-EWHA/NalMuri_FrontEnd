@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -15,7 +15,6 @@ const Emotion = () => {
     const [cardDeck, setCardDeck] = useState([]);
     const [emocard, setEmocard] = useState([]);
     const emocardArray = [];
-    let result = [];
 
     useEffect(() => {
         setUserId(uid);
