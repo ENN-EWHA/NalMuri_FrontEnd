@@ -12,6 +12,10 @@
 ![image](https://user-images.githubusercontent.com/70185844/212356129-81dbc7be-8269-4aeb-b7f1-7b6c1a4091c4.png)
 ![image](https://user-images.githubusercontent.com/70185844/212356264-31cee02e-366f-4553-8738-3fe15d58b432.png)
 
+## 서비스 이용 방법
+1. [날무리 도메인(nalmuri.site)을 통한 접속](http://nalmuri.site)
+2. 로컬에서 실행 후 접속
+
 ## Repositories
 [날무리 백엔드](https://github.com/ENN-EWHA/Nalmuri_Server) <br>
 [감정분류  NLP 모델](https://github.com/ENN-EWHA/Nalmuri_NLP)
