@@ -15,21 +15,14 @@ const FindId = () => {
     const onClickFindid = (e) => {
         e.preventDefault();
 
+        let body = {
+            email: email,
+            birth: birth,
+        };
         axios
-            .get("/member/my/find/id", {
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json; charset=UTF-8",
-                },
-                data: {
-                    email: email,
-                    birth: birth,
-                },
-            })
+            .post("/member/my/find/id", body)
             .then((res) => {
-                console.log(res.data);
-                setId(res.data);
-                renderId();
+                setId(res.data.id);
             })
             .catch((err) => {
                 console.log(err);
@@ -45,7 +38,11 @@ const FindId = () => {
     };
     const renderId = () => {
         const result = [];
-        result.push(<Title>{`아이디 : ${id}`}</Title>);
+        result.push(
+            <Title
+                style={{ margin: "50px", color: "#428DFF" }}
+            >{`아이디 : ${id}`}</Title>
+        );
         return result;
     };
 
@@ -65,7 +62,12 @@ const FindId = () => {
                     onKeyPress={enterkey}
                 />
             </Frame>
-            <Button onClick={onClickFindid}>아이디 찾기</Button>
+
+            {id ? (
+                renderId()
+            ) : (
+                <Button onClick={onClickFindid}>아이디 찾기</Button>
+            )}
         </Container>
     );
 };
