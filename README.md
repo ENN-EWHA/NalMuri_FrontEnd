@@ -13,8 +13,62 @@
 ![image](https://user-images.githubusercontent.com/70185844/212356264-31cee02e-366f-4553-8738-3fe15d58b432.png)
 
 ## 서비스 이용 방법
-1. [날무리 도메인(nalmuri.site)을 통한 접속](http://nalmuri.site)
-2. 로컬에서 실행 후 접속
+- 날무리 도메인[(nalmuri.site)](http://nalmuri.site)을 통한 접속
+- 또는 로컬에서 실행 후 접속[(localhost:3000)](http://localhost:3030)
+```shell
+$ git clone https://github.com/ENN-EWHA/NalMuri_FrontEnd
+$ cd NalMuri_FrontEnd
+$ npm install
+$ npm run start
+```
+
+## 서버 실행 방법
+- 도커 이미지를 이용해 백엔드 서버와 모델을 실행
+```shell
+$ docker pull gayeongpark/nalmuri-server-3
+$ docker run --name nalmuri-server -d -p 8080:8080 gayeongpark/nalmuri-server-3
+
+$ docker pull gayeongpark/nalmuri-nlp-1
+$ docker run --name nalmuri-nlp -d -p 5000:5000 gayeongpark/nalmuri-nlp-1
+```
+
+## 포트 번호
+| Service   | Port |
+|-----------|------|
+| Frontend  | 3000 |
+| Server    | 8080 |
+| Model Api | 5000 |
+
+## 기술 스택
+### Frontend
+<img src="https://img.shields.io/badge/React-92CAFB?style=flat-square&logo=React&logoColor=black"/></a> 
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black"/></a>
+<img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=CSS3&logoColor=white"/></a> 
+<img src="https://img.shields.io/badge/Axios-AE68D1?style=flat-square&logo=Axios&logoColor=white"/></a>
+### Backend
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=ApacheTomcat&logoColor=black"/></a>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white"/></a>
+### Model
+<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=PyTorch&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white"/></a>
+### etc.
+<img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat&logo=AmazonRDS&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Google Cloud Platform-4285F4?style=flat&logo=GoogleCloud&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white"/></a> <br/>
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=Github&logoColor=white"/></a>
+
+
+## Team ENN
+| 권영경   | 김다희   | 김승언   | 김태영              | 박가영   |
+|-------|-------|-------|------------------|-------|
+| image | image | image | image            | image |
+| Frontend, AI | Frontend, AI | Backend, AI | Backend,  DevOps | Backend, Devops |
+| [@asaei623](https://github.com/asaei623) | [@DAHEEKIM1](https://github.com/DAHEEKIM1) | [@seung-eon](https://github.com/seung-eon) | [@EHOia](https://github.com/EHOia) | [ParkIsComming](https://github.com/ParkIsComing) |
 
 ## Repositories
 [날무리 백엔드](https://github.com/ENN-EWHA/Nalmuri_Server) <br>
