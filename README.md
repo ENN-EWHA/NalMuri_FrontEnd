@@ -31,6 +31,7 @@ $ docker run --name nalmuri-server -d -p 8080:8080 gayeongpark/nalmuri-server-3
 $ docker pull gayeongpark/nalmuri-nlp-1
 $ docker run --name nalmuri-nlp -d -p 5000:5000 gayeongpark/nalmuri-nlp-1
 ```
+- 이후 NalMuri_FrontEnd/package.json의 proxy 설정을 실행 중인 서버의 주소로 변경
 
 ## 포트 번호
 | Service   | Port |
