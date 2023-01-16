@@ -26,7 +26,7 @@ $ npm run start
 - 도커 이미지를 이용해 백엔드 서버와 모델을 실행
 ```shell
 $ docker pull gayeongpark/nalmuri-server-3
-$ docker run --name nalmuri-server -d -p 8080:8080 gayeongpark/nalmuri-server-3
+$ docker run --name nalmuri-server -d -p 8080:8080 gayeongpark/nalmuri-server-4
 
 $ docker pull gayeongpark/nalmuri-nlp-1
 $ docker run --name nalmuri-nlp -d -p 5000:5000 gayeongpark/nalmuri-nlp-1
