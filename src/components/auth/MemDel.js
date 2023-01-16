@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearUser } from "../../reducer/authSlice";
+import Axios from "../../Axios";
 
 const MemDel = () => {
     const navigate = useNavigate();
@@ -13,12 +13,11 @@ const MemDel = () => {
         setPw(e.target.value);
     };
     const onClickDelete = () => {
-        axios
-            .delete("/member", {
-                data: {
-                    checkPassword: pw,
-                },
-            })
+        Axios.delete("/member", {
+            data: {
+                checkPassword: pw,
+            },
+        })
             .then(() => {
                 alert("정상적으로 회원 탈퇴 되었습니다.");
                 dispatch(clearUser());

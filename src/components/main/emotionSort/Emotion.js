@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
+import Axios from "../../../Axios";
 
 const Emotion = () => {
     const colorList = useSelector((state) => state.color.colorList);
@@ -20,8 +20,7 @@ const Emotion = () => {
         setUserId(uid);
         for (let i = 0; i < 7; i++) {
             if (userId) {
-                axios
-                    .get(`./board/question/${userId}/list/${i}`)
+                Axios.get(`./board/question/${userId}/list/${i}`)
                     .then((res) => {
                         emocardArray[i] = res.data;
                         if (i === 6) {

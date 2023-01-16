@@ -37,16 +37,16 @@
 //         });
 //         console.log(diary);
 //     };
- 
+
 // console.log(diary)
 //     return (
 //         <Container>
-            
+
 //             <Content>
 //             <Date>
 //                 <Dater type="text" value={date} onChange={getDate}/>
 //             </Date>
-                
+
 //                 <InputText
 //                     type="text"
 //                     placeholder="제목"
@@ -59,9 +59,9 @@
 
 //                     </div>
 //                 </button> */}
-                
+
 //                    </Content>
-              
+
 //                 <Editor>
 //                     <Editorr theme="snow" value={value} onChange={()=>{
 //                         const data = Editor.getValue();
@@ -88,102 +88,81 @@
 // };
 
 // export default Write;
- 
 
-
-
-import React, { useState, useRef,useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link as LinkR } from "react-router-dom";
-import axios from "axios";
+import Axios from "../../Axios";
 
-const Write=()=>{
-
-
+const Write = () => {
     const getStringDate = (date) => {
         return date.toISOString().slice(0, 10);
-      };
+    };
 
     const userid = useSelector((id) => id.auth.userData.userid);
 
     // const[userid,setUserid]=useState("");
-    const[writeDate, setDate] = useState("");
-    const[title, setTitle] = useState("");
-    const[diary,setContent]=useState("");
+    const [writeDate, setDate] = useState("");
+    const [title, setTitle] = useState("");
+    const [diary, setContent] = useState("");
 
-    
-        
-    const[state,setState]=useState({
-        
+    const [state, setState] = useState({
         // userid:data.props.id,
-        writeDate:"",
+        writeDate: "",
         userid,
-        diary:"",
+        diary: "",
     });
 
-    const handleChangeState=(e)=>{
+    const handleChangeState = (e) => {
         setState({
             ...state,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value,
         });
     };
- 
+
     useEffect(() => {
-        axios
-            .get("./board/cu"
-                
-            )
+        Axios.get("./board/cu")
             .then((response) => {
                 console.log(response.data);
-                
             })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
 
-    const handleSubmit=(e)=>{
- 
-      
+    const handleSubmit = (e) => {
         // setUserid(uid);
-        axios
-        .post("./board",state)
-        .then((res)=>{
-            console.log(res);
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
+        Axios.post("./board", state)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
-        
         console.log(state);
         alert("저장");
-        
     };
-  
-    const titleInput=useRef();
-    const contentInput=useRef();
- 
- 
-    
-    return(
+
+    const titleInput = useRef();
+    const contentInput = useRef();
+
+    return (
         <Container>
             <Content>
-     
-                    <Datediv>
-                        <Date
+                <Datediv>
+                    <Date
                         value={state.writeDate}
                         onChange={handleChangeState}
                         name="writeDate"
-                        type="date"/>
-                    </Datediv>
-          
-            
-              
-                    {/* <InputText
+                        type="date"
+                    />
+                </Datediv>
+
+                {/* <InputText
                     ref={titleInput}
                     value={state.userid}
                     onChange={handleChangeState}
@@ -191,30 +170,27 @@ const Write=()=>{
                     placeholder="제목"
                     type="text"/>
          */}
-                    <Editor
-                        ref={contentInput}
-                        value={state.diary}
-                        onChange={handleChangeState}
-                        name="diary"
-                        placeholder="내용입력"
-                        type="text"/>
-                    
+                <Editor
+                    ref={contentInput}
+                    value={state.diary}
+                    onChange={handleChangeState}
+                    name="diary"
+                    placeholder="내용입력"
+                    type="text"
+                />
 
-                    <Menu>
-                    <BtnLink to="/writequestion">                   
-                        <BtnName type="button" onClick={handleSubmit}>저장</BtnName>
+                <Menu>
+                    <BtnLink to="/writequestion">
+                        <BtnName type="button" onClick={handleSubmit}>
+                            저장
+                        </BtnName>
                     </BtnLink>
-                    </Menu>
-                    
-            
+                </Menu>
             </Content>
         </Container>
-    )
-
-  
-}
+    );
+};
 export default Write;
-
 
 const Container = styled.div`
     height: 2000px;
@@ -223,30 +199,27 @@ const Container = styled.div`
 `;
 const Content = styled.div`
     width: 70%;
-    
+
     margin: auto;
 `;
 const Editor = styled.input`
     height: 600px;
     overflow: scroll;
     border: 1px solid;
-    width:100%;
+    width: 100%;
     margin: auto;
-    align-item:center;
-  
+    align-item: center;
 `;
-const Date=styled.input`
-border:1px solid;
-border-radius:5px;
-    
+const Date = styled.input`
+    border: 1px solid;
+    border-radius: 5px;
 `;
-const Datediv=styled.div`
-padding-top:50px;
-display:flex;
+const Datediv = styled.div`
+    padding-top: 50px;
+    display: flex;
 `;
-const Dater=styled.input`
-
-border: 1px solid white;
+const Dater = styled.input`
+    border: 1px solid white;
 `;
 const InputText = styled.input`
     position: relative;
@@ -285,6 +258,6 @@ const Menu = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding-top:20px;
+    padding-top: 20px;
 `;
 const Link = styled(LinkR)``;

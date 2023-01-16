@@ -39,7 +39,7 @@ const Header = () => {
                     <Text
                         onClick={() => {
                             dispatch(clearUser());
-                            window.localStorage.removeItem("loginToken");
+                            window.localStorage.clear();
                             delete axios.defaults.headers.common[
                                 "Authorization"
                             ];

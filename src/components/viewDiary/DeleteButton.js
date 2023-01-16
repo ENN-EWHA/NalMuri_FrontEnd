@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Axios from "../../Axios";
 
 const DeleteButton = ({ data }) => {
     const onClickDelete = () => {
-        axios
-            .delete("/board", {
-                data: {
-                    userid: data.userid,
-                    writeDate: data.writeDate,
-                },
-            })
+        Axios.delete("/board", {
+            data: {
+                userid: data.userid,
+                writeDate: data.writeDate,
+            },
+        })
             .then(() => {
                 console.log("삭제 성공");
             })

@@ -3,7 +3,7 @@ import Diary from "./Diary";
 import First from "./First";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
+import Axios from "../../../Axios";
 
 const Diaries = () => {
     const [data, setData] = useState([]);
@@ -15,8 +15,7 @@ const Diaries = () => {
     useEffect(() => {
         setUserid(uid);
         if (userid) {
-            axios
-                .get(`/board/${userid}`)
+            Axios.get(`/board/${userid}`)
                 .then((res) => {
                     setData(res.data);
                 })
