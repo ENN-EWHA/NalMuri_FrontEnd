@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import axios from "axios";
 import Axios from "./Axios";
-import { loginUser, clearUser, userInfo } from "./reducer/authSlice";
+import { loginUser, userInfo } from "./reducer/authSlice";
 
 import SignupPage from "./pages/SignupPage";
 import MainPage from "./pages/MainPage";
@@ -16,6 +16,7 @@ import WriteQuestionPage from "./pages/WriteQuestionPage";
 import MemDelPage from "./pages/MemDelPage";
 import FindIdPage from "./pages/FindIdPage";
 import FindPwPage from "./pages/FindPwPage";
+import MyInfoPage from "./pages/MyInfoPage";
 
 function App() {
     useEffect(() => {
@@ -73,6 +74,7 @@ function App() {
                 <Route path="/memdel" element={<MemDelPage />} />
                 <Route path="/findid" element={<FindIdPage />} />
                 <Route path="/findpw" element={<FindPwPage />} />
+                <Route path="/myinfo" element={<MyInfoPage />} />
             </Routes>
         </Router>
     );
