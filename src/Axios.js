@@ -11,7 +11,6 @@ const Axios = axios.create({
 });
 const refresh = mem(
     () => {
-        console.log(diff);
         if (diff < 60000) {
             let body = {
                 accessToken: accessToken,
@@ -20,7 +19,6 @@ const refresh = mem(
             axios
                 .post("/auth/refresh", body)
                 .then((res) => {
-                    console.log("wow");
                     //localStorage
                     window.localStorage.clear();
                     localStorage.setItem("accessToken", res.data.accessToken);
