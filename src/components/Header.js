@@ -39,7 +39,7 @@ const Header = () => {
                     <Text
                         onClick={() => {
                             dispatch(clearUser());
-                            window.localStorage.removeItem("loginToken");
+                            window.localStorage.clear();
                             delete axios.defaults.headers.common[
                                 "Authorization"
                             ];
@@ -54,10 +54,10 @@ const Header = () => {
                     </Text>
                     <Text>
                         <Link
-                            to={"/memdel"}
+                            to={"/myinfo"}
                             style={{ color: "black", textDecoration: "none" }}
                         >
-                            회원 탈퇴
+                            내 정보
                         </Link>
                     </Text>
                 </Right>

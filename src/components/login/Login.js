@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginUser, userInfo } from "../../reducer/authSlice";
+import Axios from "../../Axios";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -42,7 +43,11 @@ const Login = () => {
             .then((res) => {
                 dispatch(loginUser(res.data));
                 if (res.data.accessToken) {
-                    localStorage.setItem("loginToken", res.data.accessToken);
+                    localStorage.setItem("accessToken", res.data.accessToken);
+                    localStorage.setItem(
+                        "tokenExpiresIn",
+                        res.data.tokenExpiresIn
+                    );
 
                     //token 정보를 사용하여 user 정보를 불러온 뒤 저장
                     axios.defaults.headers.common[

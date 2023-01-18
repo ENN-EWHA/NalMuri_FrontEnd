@@ -22,6 +22,8 @@ const MemDel = () => {
             .then(() => {
                 alert("정상적으로 회원 탈퇴 되었습니다.");
                 dispatch(clearUser());
+                window.localStorage.clear();
+                delete axios.defaults.headers.common["Authorization"];
                 navigate("/");
             })
             .catch((err) => {

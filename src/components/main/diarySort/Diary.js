@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Axios from "../../../Axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -15,8 +15,7 @@ const Diary = ({ data }) => {
     useEffect(() => {
         setUserId(uid);
 
-        axios
-            .get(`/board/question/${uid}`)
+        Axios.get(`/board/question/${uid}`)
             .then((res) => {
                 setCarddata(res.data);
             })
