@@ -8,70 +8,85 @@ import axios from "axios";
 const Emotion = () => {
     const colorList = useSelector((state) => state.color.colorList);
 
-    const [emonum, setEmonum] = useState("");
+    const [emonum, setEmonum] = useState();
     const [isClicked, setIsClicked] = useState(false);
-    const [emocard, setEmocard] = useState("");
     const uid = useSelector((state) => state.auth.userData.userid);
-    const [userId, setUserId] = useState("");
+    const [userId, setUserId] = useState(uid);
+    const [cardDeck, setCardDeck] = useState([]);
+    const [emocard, setEmocard] = useState([]);
+    const emocardArray = [];
 
     useEffect(() => {
         setUserId(uid);
-
-        if (userId) {
-            axios
-                .get(`/board/question/${userId}/list/${emonum}`)
-                .then((res) => {
-                    setEmocard(res.data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    setEmocard(0);
-                });
+        for (let i = 0; i < 7; i++) {
+            if (userId) {
+                axios
+                    .get(`./board/question/${userId}/list/${i}`)
+                    .then((res) => {
+                        emocardArray[i] = res.data;
+                        if (i === 6) {
+                            setEmocard(emocardArray);
+                        }
+                    })
+                    .catch((err) => {
+                        emocardArray[i] = [];
+                        if (i === 6) {
+                            setEmocard(emocardArray);
+                        }
+                        console.log(err);
+                    });
+            }
         }
-    }, [uid, userId, emonum]);
-
-    const render = () => {
-        const result = [];
-        if (isClicked) {
-            if (emocard) {
-                result.push(
-                    emocard.map((it) => {
+    }, [uid, userId]);
+    useEffect(() => {
+        if (emocard.length === 7) {
+            const result = [];
+            result.push(
+                colorList.map((it) => {
+                    const len = emocard[colorList.indexOf(it)].length;
+                    if (len >= 1) {
                         return (
                             <Button
                                 onClick={() => {
-                                    setIsClicked(false);
+                                    setEmonum(colorList.indexOf(it));
+                                    setIsClicked(true);
                                 }}
                             >
                                 <Card
-                                    color={colorList[emonum].lightColor}
-                                    data={it.cardquestion}
+                                    color={it}
+                                    data={it.emotion}
+                                    length={len}
                                 />
                             </Button>
                         );
-                    })
-                );
-            } else {
-                result.push();
-                alert("해당 감정의 질문 카드가 없습니다.");
-                setIsClicked(false);
-            }
-        } else {
+                    }
+                })
+            );
+            setCardDeck(result);
+        }
+    }, [emocard]);
+    const render = () => {
+        const result = [];
+        if (isClicked) {
             result.push(
-                colorList.map((it) => {
+                emocard[emonum].map((it) => {
                     return (
                         <Button
                             onClick={() => {
-                                setEmonum(colorList.indexOf(it));
-                                setIsClicked(true);
+                                setIsClicked(false);
                             }}
                         >
-                            <Card color={it.lightColor} data={it.emotion} />
+                            <Card
+                                color={colorList[emonum]}
+                                data={it.cardquestion}
+                            />
                         </Button>
                     );
                 })
             );
+        } else {
+            return cardDeck;
         }
-
         return result;
     };
 

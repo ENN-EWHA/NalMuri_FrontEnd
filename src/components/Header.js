@@ -3,6 +3,7 @@ import logo from "../assets/imgs/logo.png";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../reducer/authSlice";
+import axios from "axios";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -38,6 +39,10 @@ const Header = () => {
                     <Text
                         onClick={() => {
                             dispatch(clearUser());
+                            window.localStorage.removeItem("loginToken");
+                            delete axios.defaults.headers.common[
+                                "Authorization"
+                            ];
                         }}
                     >
                         <Link

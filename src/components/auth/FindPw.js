@@ -4,48 +4,43 @@ import axios from "axios";
 
 const FindPw = () => {
     const [email, setEmail] = useState("");
-    const [birth, setBirth] = useState("");
-    const [pw, setPw] = useState("");
+    const [id, setId] = useState("");
+    const [msg, setMsg] = useState("");
     const handleEmail = (e) => {
         setEmail(e.target.value);
     };
-    const handleBirth = (e) => {
-        setBirth(e.target.value);
+    const handleId = (e) => {
+        setId(e.target.value);
     };
-    const onClickFindid = (e) => {
+    const onClickFindpw = (e) => {
         e.preventDefault();
 
+        let body = {
+            email: email,
+            userid: id,
+        };
         axios
-            .get("/member/my/find/password", {
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json; charset=UTF-8",
-                },
-                data: {
-                    email: email,
-                    birth: birth,
-                },
-            })
+            .post("/member/my/find/password", body)
             .then((res) => {
-                console.log(res.data);
-                setPw(res.data);
-                renderPw();
+                setMsg(res.data.message);
             })
             .catch((err) => {
                 console.log(err);
-                alert("이메일 혹은 생년월일을 다시 입력해 주세요.");
+                alert("이메일 혹은 아이디를 다시 입력해 주세요.");
             });
     };
 
     //enter
     const enterkey = (e) => {
         if (e.key == "Enter") {
-            onClickFindid(e);
+            onClickFindpw(e);
         }
     };
     const renderPw = () => {
         const result = [];
-        result.push(<Title>{`비밀번호 : ${pw}`}</Title>);
+        result.push(
+            <Title style={{ margin: "50px", color: "#428DFF" }}>{msg}</Title>
+        );
         return result;
     };
 
@@ -59,15 +54,14 @@ const FindPw = () => {
                 <Input value={email} onChange={handleEmail} />
             </Frame>
             <Frame>
-                <Text>생년월일</Text>
-                <Input
-                    type="date"
-                    value={birth}
-                    onChange={handleBirth}
-                    onKeyPress={enterkey}
-                />
+                <Text>아이디</Text>
+                <Input value={id} onChange={handleId} onKeyPress={enterkey} />
             </Frame>
-            <Button onClick={onClickFindid}>비밀번호 찾기</Button>
+            {msg ? (
+                renderPw()
+            ) : (
+                <Button onClick={onClickFindpw}>비밀번호 찾기</Button>
+            )}
         </Container>
     );
 };

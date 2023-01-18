@@ -1,102 +1,7 @@
-// import React, { useState } from "react";
-// import styled from "styled-components";
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css";
-// import { Link as LinkR } from "react-router-dom";
-
-// import Header from "../Header";
-
-// const getStringDate = (date) => {
-//     return date.toISOString().slice(0, 10);
-//   };
-
-// const Write = () => {
-//     const [value, setValue] = useState('');
-//     const [date, setDate] = useState(getStringDate(new window.Date()));
-//     const [diary, setDiary] = useState({
-//         date: "",
-//         title: "",
-//         content: "",
-//     });
-
-// console.log(date)
-// console.log(diary)
-//     const getDate=(e)=>{
-//         const{name, value}=e.target;
-//         setDate({
-//             ...date,
-//             [name]:value,
-//         });
-//         console.log(date);
-//     }
-//     const getValue = (e) => {
-//         const { name, value } = e.target;
-//         setDiary({
-//             ...diary,
-//             [name]: value,
-//         });
-//         console.log(diary);
-//     };
- 
-// console.log(diary)
-//     return (
-//         <Container>
-            
-//             <Content>
-//             <Date>
-//                 <Dater type="text" value={date} onChange={getDate}/>
-//             </Date>
-                
-//                 <InputText
-//                     type="text"
-//                     placeholder="제목"
-//                     onChange={getValue}
-//                     name="title"
-//                 />
-//                 {/* <button name= "calendar">
-//                     <div className="calendar">
-//                         <Calendar value={date} onChange={setDate}/>
-
-//                     </div>
-//                 </button> */}
-                
-//                    </Content>
-              
-//                 <Editor>
-//                     <Editorr theme="snow" value={value} onChange={()=>{
-//                         const data = Editor.getValue();
-//                         console.log({ Editor, data });
-//                         setDiary({
-//                             ...diary,
-//                             content: data,
-//                         });
-//                         console.log(diary);
-//                     }}
-//                     name="content"
-//                 />
-//             </Editor>
-
-//             <Menu>
-//                 <TempSave>
-//                     <BtnLink to="./WriteQuestion">
-//                         <BtnName type="submit">저장 후 질문카드 생성</BtnName>
-//                     </BtnLink>
-//                 </TempSave>
-//             </Menu>
-//         </Container>
-//     );
-// };
-
-// export default Write;
- 
-
-
 
 import React, { useState, useRef,useEffect} from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { Link as LinkR } from "react-router-dom";
 import axios from "axios";
 
@@ -149,21 +54,62 @@ const Write=()=>{
  
       
         // setUserid(uid);
-        axios
-        .post("./board",state)
-        .then((res)=>{
-            console.log(res);
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
+      
+        axios(
+            {
+                method: "POST",
+                url: "http://34.64.209.5:5000/api",
+                data: JSON.stringify({
+                    sentence: state.diary,
+                }),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            },
+            { withCredentials: true }
+        )
+            .then((Response) => {
+                console.log(Response.data);
+            })
+            .catch((Error) => {
+                console.log(Error);
+            });
 
+            axios
+            .post("./board",state)
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
         
         console.log(state);
         alert("저장");
         
     };
   
+    // useEffect(() => {
+    //     axios(
+    //         {
+    //             method: "POST",
+    //             url: "http://34.64.209.5:5000/api",
+    //             data: JSON.stringify({
+    //                 sentence: "너무신나",
+    //             }),
+    //             headers: {
+    //                 "Content-Type": "application/json; charset=utf-8",
+    //             },
+    //         },
+    //         { withCredentials: true }
+    //     )
+    //         .then((Response) => {
+    //             console.log(Response.data);
+    //         })
+    //         .catch((Error) => {
+    //             console.log(Error);
+    //         });
+    // });
     const titleInput=useRef();
     const contentInput=useRef();
  
@@ -172,6 +118,7 @@ const Write=()=>{
     return(
         <Container>
             <Content>
+                
      
                     <Datediv>
                         <Date

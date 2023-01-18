@@ -12,6 +12,10 @@ import { useSelector } from "react-redux";
 import MemDelPage from "./pages/MemDelPage";
 import FindIdPage from "./pages/FindIdPage";
 import FindPwPage from "./pages/FindPwPage";
+import { useEffect } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginUser, userInfo } from "./reducer/authSlice";
 
 function App() {
     // useEffect(() => {
@@ -19,7 +23,7 @@ function App() {
     //         method: 'GET',
     //         url: "./board/question/nlp",
     //         body: {
-    //           "sentence":"집에가고싶다요"
+    //             "sentence": "왜 안되는건데 진짜 짜증나"
     //         }
 
     //       }, { withCredentials : true })
@@ -29,6 +33,7 @@ function App() {
     //           console.log(Error);
     //       })
     // })
+
     // axios
 
     // useEffect(() => {
@@ -56,10 +61,30 @@ function App() {
     //         .catch((error) => console.log(error));
     // }, []);
     // useEffect(() => {
-    //         fetch("http://34.64.209.5:8080/board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
+    //     fetch("./board/question/nlp", {params:{"sentence":"집에가고싶다"}},{withCredentials: true })
     //           .then((response) => console.log("response:", response))
     //           .catch((error) => console.log("error:", error));
     // })
+
+  
+
+    //로그인 검증
+    const dispatch = useDispatch();
+    const accessToken = window.localStorage.getItem("loginToken");
+    if (accessToken) {
+        dispatch(loginUser(accessToken));
+        axios.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${accessToken}`;
+        axios
+            .get("/member/my/info")
+            .then((res) => {
+                dispatch(userInfo(res.data));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
     const isLogin = useSelector((state) => state.auth.isLogin);
 
